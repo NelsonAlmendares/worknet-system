@@ -97,6 +97,15 @@
 .custom-icon-size {
     font-size: 18px;
 }
+.update-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.espaciado {
+    margin-left: 4px;
+    margin-right: 4px;
+}
 #no-hover a:hover {
     background: #2D3643;
     color: #fff;

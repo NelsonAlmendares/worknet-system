@@ -17,7 +17,6 @@ class EmpleadoController extends Controller
         return view('Empleados.createEmpleado', compact('empleados'));
     }
 
-
     // Funcion para llamar la vista en la carpeta (views->Empleados 'createEmpleado')
     public function create()
     {
@@ -59,9 +58,8 @@ class EmpleadoController extends Controller
     public function edit($id)
     {
         $empleado = EmpleadoModelo::findOrFail($id);
-        return response()->json($empleado); // Devuelve los datos en formato JSON
+        return view('Empleados.updateEmpleado', compact('empleado'));
     }
-
 
     public function update(Request $request, $idemployee)
     {
