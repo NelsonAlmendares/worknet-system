@@ -22,5 +22,4 @@ class EmpleadoModelo extends Model
         'empecontactname', 'empecontactcel', 'empcontactkin', 'empbgender', 'empfullname',
         'empfullnameb', 'emp_idposition', 'emp_e'
     ];
-
 }

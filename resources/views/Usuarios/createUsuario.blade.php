@@ -30,10 +30,12 @@
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
                 <span class="font_custom-white">
-                    <i class='bx bxs-dashboard' ></i>
-                    Dashboard
+                    <a href="{{ route('welcome') }}" class="text-decoration-none font_custom-white">
+                        <i class='bx bxs-dashboard'></i>
+                        Dashboard
+                    </a>
                 </span>
             </div>
         </div>
@@ -52,7 +54,7 @@
         </div>
         <!-- Menus deplegables -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#users">
+            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#users">
                 <span class="font_custom-white">
                     <i class='bx bxs-user' ></i>
                     Usuarios
@@ -244,8 +246,60 @@
           </nav>
 
           <div class="p-4">
-            <h2>Main Content Area</h2>
-            <p>Your content goes here...</p>
+            <h2>Adminisrtación de Usuarios</h2>
+
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                </ol>
+              </nav>
+
+            <div class="mt-5">
+                <div class="card p-3">
+                    <h3 class="text-center mb-3">Lista de Empleados</h3>
+                    @if($usuarios->isEmpty())
+                        <p>No hay empleados registrados.</p>
+                    @else
+                <table class="table table-striped table-hover">
+                    <thead class="">
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Empleado</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($usuarios as $usuario)
+                            <tr>
+                                <td>{{ $usuario->iduser }}</td>
+                                <td>{{ $usuario->user_name }}</td>
+                                <td>{{ $usuario->user_idemp }}</td>
+                                <td>{{ $usuario->user_e ?? 'No disponible' }}</td>
+                                <td>
+                                    <a href="{{ route('Usuarios.edit', $usuario->iduser) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                                    <form id="deleteForm-{{ $usuario->iduser }}" action="{{ route('Usuarios.destroy', $usuario->iduser) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $usuario->iduser }})">
+                                            Eliminar <i class='bx bxs-trash custom-icon-size'></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+
+                </table>
+
+                @endif
+
+                </div>
+            </div>
+
           </div>
     </div>
 </div>

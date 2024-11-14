@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\EmpleadoModelo;
-use Carbon\Carbon;
-
 
 class EmpleadoController extends Controller
 {
-
     public function index()
     {
         $empleados = EmpleadoModelo::all(); // Obtener todos los empleados
@@ -46,7 +43,6 @@ class EmpleadoController extends Controller
         try {
             // Crear el registro de empleado en la base de datos
             EmpleadoModelo::create($request->all());
-
             // Redirigir con mensaje de éxito
             return redirect()->back()->with('success', 'Empleado registrado con éxito!');
         } catch (\Exception $e) {
