@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\usuarioModelo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class usuarioController extends Controller
 {
@@ -22,49 +25,74 @@ class usuarioController extends Controller
     }
 
     // Método para registrar un nuevo usuario
-    public function register(Request $request)
+    public function store(Request $request)
     {
+        // Validar los datos del formulario
         $request->validate([
-            'user_name' => 'required|string|max:10|unique:user,user_name',
-            'user_password' => 'required|string|min:6',
-            'user_idemp' => 'required|integer|exists:employee,idemployee',
-            'user_e' => 'required|string|max:1',
+            'user_name' => 'required|string|max:10',
+            'user_password' => 'required|string|max:150',
+            'user_idemp' => 'required|integer|exists:employee,idemployee',  // Verifica que el idemp exista en la tabla 'employee'
+            'user_e' => 'required|string|max:12',
         ]);
-        $user = usuarioModelo::create($request->all());
-        return response()->json(['message' => 'Usuario registrado exitosamente', 'user' => $user], 201);
+
+        try {
+            // Encriptar la contraseña antes de almacenarla
+            $encryptedPassword = Hash::make($request->user_password);
+
+            // Crear el registro de usuario en la base de datos con la contraseña encriptada
+            usuarioModelo::create([
+                'user_name' => $request->user_name,
+                'user_password' => $encryptedPassword,  // Contraseña encriptada
+                'user_idemp' => $request->user_idemp,
+                'user_e' => $request->user_e,
+            ]);
+
+            // Redirigir con mensaje de éxito
+            return redirect()->back()->with('success', 'Usuario registrado con éxito!');
+        } catch (\Exception $e) {
+            // Capturar cualquier error que ocurra durante el proceso de inserción
+            Log::error('Error al registrar el usuario: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Hubo un error al registrar el usuario.']);
+        }
     }
 
     public function edit($id)
     {
         // Buscar el usuario por ID
-        $usuario = usuarioModelo::findOrFail($id);
+        $user = usuarioModelo::findOrFail($id);
         // Retornar la vista de actualización con el usuario específico
-        return view('Usuarios.updateUsuario', compact('usuario'));
+        return view('Usuarios.updateUsuario', compact('user'));
     }
 
-    public function update(Request $request, $idusuario)
+    public function update(Request $request, $id)
     {
-        // Validar los datos antes de actualizar
+        // Validar los datos del formulario
         $request->validate([
-            'empfname' => 'required|string|max:50',
-            'empsname' => 'nullable|string|max:50',
-            'empfsurname' => 'required|string|max:50',
-            'empssurname' => 'nullable|string|max:50',
-            'empdui' => 'required|string|max:10',
-            'empnit' => 'required|string|max:17',
+            'user_name' => 'required|string|max:10',
+            'user_password' => 'required|string|max:150',
+            'user_idemp' => 'required|integer|exists:employee,idemployee',
+            'user_e' => 'required|string|max:12',
         ]);
-        // Buscar el usuario por ID y actualizar
-        $usuario = usuarioModelo::findOrFail($idusuario);
-        $usuario->update([
-            'empfname' => $request->empfname,
-            'empsname' => $request->empsname,
-            'empfsurname' => $request->empfsurname,
-            'empssurname' => $request->empssurname,
-            'empdui' => $request->empdui,
-            'empnit' => $request->empnit,
-        ]);
-        // Redirigir con un mensaje de éxito
-        return redirect()->route('Usuarios.index')->with('success', 'Empleado actualizado con éxito.');
+
+        try {
+            // Encriptar la contraseña antes de almacenarla
+            $encryptedPassword = Hash::make($request->user_password);
+
+            // Encuentra el usuario y actualiza sus datos
+            $user = usuarioModelo::findOrFail($id);
+            $user->update([
+                'user_name' => $request->user_name,
+                'user_password' => $encryptedPassword,  // Aquí también puedes encriptar la contraseña si es necesario
+                'user_idemp' => $request->user_idemp,
+                'user_e' => $request->user_e,
+            ]);
+
+            // Redirigir con mensaje de éxito
+            return redirect()->route('Usuarios.index')->with('success', 'Usuario actualizado con éxito!');
+        } catch (\Exception $e) {
+            Log::error('Error al actualizar el usuario: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Hubo un error al actualizar el usuario.']);
+        }
     }
 
     public function destroy($id)
@@ -76,4 +104,37 @@ class usuarioController extends Controller
         return redirect()->route('Usuarios.index')->with('success', 'Empleado eliminado correctamente.');
     }
 
+    public function Login ()
+    {
+        return view('login');
+    }
+
+    public function LoginPost(Request $request)
+    {
+        // Validación de entrada
+        $request->validate([
+            'user_name' => 'required|string',
+            'user_password' => 'required|string',
+        ]);
+
+        // Credenciales
+        $credentials = [
+            'user_name' => $request->user_name,
+            'password' => $request->user_password,
+        ];
+
+         // Intentar autenticar al usuario
+        if (Auth::attempt($credentials)) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Login exitoso'
+            ]);
+        }
+
+        // Si la autenticación falla
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Usuario o contraseña incorrectos'
+        ], 401);
+    }
 }

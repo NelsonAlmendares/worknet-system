@@ -39,11 +39,13 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-bar-chart-alt-2' ></i>
-                    Administración
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -54,7 +56,7 @@
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#users">
                 <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
+                    <i class='bx bxs-user-rectangle margin-top-icon'></i>
                     Usuarios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
@@ -80,64 +82,19 @@
             </div>
         </div>
 
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-folder' ></i>
-                    Modulos
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-file' ></i>
-                    Reportes
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
         <div class="list-menu-small">
             <p class="text-small">Funciones</p>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-map' ></i>
-                    Países
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#department">
                 <span class="font_custom-white">
                     <i class='bx bx-map-alt' ></i>
                     Departamentos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
+            <div class="collapse submenu" id="department">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
                 <a href="#" class="submenu-item">Statistics</a>
@@ -145,14 +102,14 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#district">
                 <span class="font_custom-white">
                     <i class='bx bxs-institution' ></i>
                     Distritos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
+            <div class="collapse submenu" id="district">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
                 <a href="#" class="submenu-item">Statistics</a>
@@ -160,14 +117,14 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#municip">
                 <span class="font_custom-white">
                     <i class='bx bxs-school' ></i>
                     Municipios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
+            <div class="collapse submenu" id="municip">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
                 <a href="#" class="submenu-item">Statistics</a>
@@ -180,7 +137,7 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
                 <span class="font_custom-white">
                     <i class='bx bxs-food-menu' ></i>
                     Compañía
@@ -189,7 +146,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
                 <span class="font_custom-white">
                     <i class='bx bx-clipboard' ></i>
                     Sucursal
@@ -198,18 +155,7 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Empleados.index') }}">
-                    <span class="font_custom-white">
-                        <i class='bx bxs-user' ></i>
-                        Empleado
-                    </span>
-                </a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
                 <span class="font_custom-white">
                     <i class='bx bx-list-check' ></i>
                     Cargo

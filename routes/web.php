@@ -6,9 +6,8 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\usuarioController;
 
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/login', [UsuarioController::class, 'Login'])->name('login');
+Route::post('/login', [UsuarioController::class, 'LoginPost'])->name('Usuario.LoginPost');
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +32,6 @@ Route::get('/personaRegister/{id}', [EmpleadoController::class, 'edit'])->name('
 Route::put('/personaRegister/{idemployee}', [EmpleadoController::class, 'update'])->name('Empleados.update');
 // Ruta para eliminar datos
 Route::delete('/personaRegister/{id}', [EmpleadoController::class, 'destroy'])->name('Empleados.destroy');
-
+// USAR PARA QUE SE REGISTREN DATOS: ALTER TABLE conacyt.user MODIFY COLUMN  user_e varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL;
 
 Route::get('/branchRegister', [branchController::class, 'index'])->name('branches.index');
