@@ -30,22 +30,22 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
                 <span class="font_custom-white">
-                    <a href="{{ route('welcome') }}" class="text-decoration-none font_custom-white">
-                        <i class='bx bxs-dashboard'></i>
-                        Dashboard
-                    </a>
+                    <i class='bx bxs-dashboard' ></i>
+                    Dashboard
                 </span>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-bar-chart-alt-2' ></i>
-                    Administración
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -56,15 +56,13 @@
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#users">
                 <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
+                    <i class='bx bxs-user-rectangle margin-top-icon'></i>
                     Usuarios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="users">
-                <a href="#" class="submenu-item">User List</a>
-                <a href="#" class="submenu-item">Add User</a>
-                <a href="#" class="submenu-item">User Groups</a>
+                <a href="{{ route('Usuarios.index') }}" class="submenu-item">Agregar Usuario</a>
             </div>
         </div>
 
@@ -78,39 +76,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-folder' ></i>
-                    Modulos
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-file' ></i>
-                    Reportes
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="#" class="submenu-item">Agregar</a>
             </div>
         </div>
 
@@ -119,62 +85,43 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-map' ></i>
-                    Países
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#department">
                 <span class="font_custom-white">
                     <i class='bx bx-map-alt' ></i>
                     Departamentos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="department">
+                <a href="#" class="submenu-item ">Agregar departamento</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#district">
                 <span class="font_custom-white">
                     <i class='bx bxs-institution' ></i>
                     Distritos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="district">
+                <a href="#" class="submenu-item ">Agregar distritos</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#municip">
                 <span class="font_custom-white">
                     <i class='bx bxs-school' ></i>
                     Municipios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="dashboard">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="municip">
+                <a href="#" class="submenu-item ">Agregar municipios</a>
             </div>
         </div>
 
@@ -184,38 +131,35 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="active" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
             </div>
         </div>
     </div>
@@ -237,51 +181,102 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-warning rounded-pill">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">17</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">Notificación 1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-danger" href="#">Cerrar Sesión <i class="bx bx-log-in topbar-icon text-danger"></i></a></li>
+                            <li><a class="dropdown-item text-secondary" href="#">Configuración <i class="bx bxs-face topbar-icon text-secondary"></i></a></li>
+                            <li><a class="dropdown-item text-secondary" href="#">Soporte <i class="bx bx-support topbar-icon text-info"></i></a></li>
+                        </ul>
+                    </div>
                 </span>
               </div>
             </div>
           </nav>
 
           <div class="p-4">
-            <h2>Manejo de marcas</h2>
-            <p>Your content goes here...</p>
+            <h2>Adminisrtación de Compañías</h2>
 
-            <div class="container mt-5">
-                <h2>Lista de Sucursales</h2>
-                <table class="table table-bordered table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Fecha de Creación</th>
-                            <th>Compañía ID</th>
-                            <th>Estado</th>
-                            <th>Email</th>
-                            <th>Teléfono</th>
-                            <th>Logo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($branches as $branch)
-                        <tr>
-                            <td>{{ $branch->idbranch }}</td>
-                            <td>{{ $branch->brnname }}</td>
-                            <td>{{ $branch->brnborndate }}</td>
-                            <td>{{ $branch->brn_compid }}</td>
-                            <td>{{ $branch->brn_e }}</td>
-                            <td>{{ $branch->brn_email }}</td>
-                            <td>{{ $branch->brn_tel }}</td>
-                            <td>{{ $branch->brn_logo }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Compañías</li>
+                </ol>
+              </nav>
+
+            <div class="mt-5">
+                <div class="card p-3">
+                    <h3 class="text-center mb-3">Lista de Sucursales</h3>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Fecha de Creación</th>
+                                <th>Compañía ID</th>
+                                <th>Estado</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Logo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($branches as $branch)
+                            <tr>
+                                <td>{{ $branch->idbranch }}</td>
+                                <td>{{ $branch->brnname }}</td>
+                                <td>{{ $branch->brnborndate }}</td>
+                                <td>{{ $branch->brn_compid }}</td>
+                                <td>{{ $branch->brn_e }}</td>
+                                <td>{{ $branch->brn_email }}</td>
+                                <td>{{ $branch->brn_tel }}</td>
+                                <td>{{ $branch->brn_logo }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
-
-
           </div>
     </div>
 </div>

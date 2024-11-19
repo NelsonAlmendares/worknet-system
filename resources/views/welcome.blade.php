@@ -76,9 +76,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
+                <a href="#" class="submenu-item">Agregar</a>
             </div>
         </div>
 
@@ -95,9 +93,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="#" class="submenu-item ">Agregar departamento</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -110,9 +107,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="#" class="submenu-item ">Agregar distritos</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -125,9 +121,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="#" class="submenu-item ">Agregar municipios</a>
             </div>
         </div>
 
@@ -137,29 +131,35 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
             </div>
         </div>
     </div>
@@ -181,9 +181,54 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-warning rounded-pill">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">17</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Content for list item
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">Notificación 1</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-danger" href="#">Cerrar Sesión <i class="bx bx-log-in topbar-icon text-danger"></i></a></li>
+                            <li><a class="dropdown-item text-secondary" href="#">Configuración <i class="bx bxs-face topbar-icon text-secondary"></i></a></li>
+                            <li><a class="dropdown-item text-secondary" href="#">Soporte <i class="bx bx-support topbar-icon text-info"></i></a></li>
+                        </ul>
+                    </div>
                 </span>
               </div>
             </div>
@@ -192,6 +237,11 @@
           <div class="p-4">
             <h2>Main Content Area</h2>
             <p>Your content goes here...</p>
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
           </div>
     </div>
 </div>

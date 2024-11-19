@@ -89,7 +89,7 @@
                         clearInterval(timerInterval);
                     }
                     }).then(() => {
-                        window.location.href = '/'; // Redirigir después del éxito
+                        window.location.href = '/welcome'; // Redirigir después del éxito
                     });
 
                 } else {

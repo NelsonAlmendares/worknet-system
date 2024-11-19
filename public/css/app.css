@@ -56,6 +56,21 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+.notifications {
+    width: 360px;
+}
+
+.footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
 .logo-img {
     height: 170px;
 }
@@ -121,6 +136,13 @@
 }
 #active > span {
     color: #479BFF !important;
+}
+
+#active > a > span {
+    color: #479BFF !important;
+}
+.topbar-icon {
+    font-size: 18px;
 }
 span > i {
     font-size: 20px;
