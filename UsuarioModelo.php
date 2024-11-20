@@ -23,6 +23,7 @@ class UsuarioModelo extends Authenticatable
 
     // Define los campos que se pueden asignar masivamente
     protected $fillable = [
+        'iduser',
         'user_name',
         'user_password',
         'user_idemp',
@@ -41,3 +42,4 @@ class UsuarioModelo extends Authenticatable
         return $this->user_password;
     }
 }
+
