@@ -2,11 +2,16 @@
 
 use App\Http\Controllers\branchController;
 use App\Http\Controllers\companyController;
+use App\Http\Controllers\departmentController;
+use App\Http\Controllers\districtController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\municipController;
+use App\Http\Controllers\municipNewController;
 use App\Http\Controllers\positionController;
 use App\Http\Controllers\usuarioController;
-
+use App\Models\departmentModelo;
+use App\Models\districtModelo;
 
 // LOGIN
 Route::get('/', function () {
@@ -61,3 +66,44 @@ Route::get('/cargosRegister/{id}', [positionController::class, 'edit'])->name('C
 Route::put('/cargosRegister/{idposition}', [usuarioController::class, 'update'])->name('Cargos.update');
 // Ruta para eliminar datos
 Route::delete('cargosRegister/{idposition}', [UsuarioController::class, 'destroy'])->name('Cargos.destroy');
+
+
+//Registro de Municipios
+Route::get('/municip', [municipController::class, 'index'])->name('Municip.index');
+Route::get('/municip/create', [municipController::class, 'create'])->name('Municip.create');
+Route::post('/municip', [municipController::class, 'store'])->name('Municip.store');
+// Ruta para actualizar datos
+Route::get('/municip/{id}', [municipController::class, 'edit'])->name('Municip.edit');
+Route::put('/municip/{id}', [municipController::class, 'update'])->name('Municip.update');
+// Ruta para eliminar datos
+Route::delete('/municip/{id}', [municipController::class, 'destroy'])->name('Municip.destroy');
+
+//Registro de Municipios (nuevo)
+Route::get('/municipNew', [municipNewController::class, 'index'])->name('MunicipNew.index');
+Route::get('/municipNew/create', [municipNewController::class, 'create'])->name('MunicipNew.create');
+Route::post('/municipNew', [municipNewController::class, 'store'])->name('MunicipNew.store');
+// Ruta para actualizar datos
+Route::get('/municipNew/{id}', [municipNewController::class, 'edit'])->name('MunicipNew.edit');
+Route::put('/municipNew/{id}', [municipNewController::class, 'update'])->name('MunicipNew.update');
+// Ruta para eliminar datos
+Route::delete('/municipNew/{id}', [municipNewController::class, 'destroy'])->name('MunicipNew.destroy');
+
+//Registro de Distritos
+Route::get('/district', [districtController::class, 'index'])->name('District.index');
+Route::get('/district/create', [districtController::class, 'create'])->name('District.create');
+Route::post('/district', [districtController::class, 'store'])->name('District.store');
+// Ruta para actualizar datos
+Route::get('/district/{id}', [districtController::class, 'edit'])->name('District.edit');
+Route::put('/district/{id}', [districtController::class, 'update'])->name('District.update');
+// Ruta para eliminar datos
+Route::delete('/district/{id}', [districtController::class, 'destroy'])->name('District.destroy');
+
+//Registro de Departamentos
+Route::get('/department', [departmentController::class, 'index'])->name('Department.index');
+Route::get('/department/create', [departmentController::class, 'create'])->name('Department.create');
+Route::post('/department', [departmentController::class, 'store'])->name('Department.store');
+// Ruta para actualizar datos
+Route::get('/department/{id}', [departmentController::class, 'edit'])->name('Department.edit');
+Route::put('/department/{id}', [departmentController::class, 'update'])->name('Department.update');
+// Ruta para eliminar datos
+Route::delete('/department/{id}', [departmentController::class, 'destroy'])->name('Department.destroy');
