@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\afActivoController;
+use App\Http\Controllers\afDepreciacionController;
+use App\Http\Controllers\afDVidaUtilController;
+use App\Http\Controllers\afFuenteFinancieraController;
 use App\Http\Controllers\branchController;
 use App\Http\Controllers\companyController;
 use App\Http\Controllers\departmentController;
@@ -107,3 +111,33 @@ Route::get('/department/{id}', [departmentController::class, 'edit'])->name('Dep
 Route::put('/department/{id}', [departmentController::class, 'update'])->name('Department.update');
 // Ruta para eliminar datos
 Route::delete('/department/{id}', [departmentController::class, 'destroy'])->name('Department.destroy');
+
+//Registro de Fuente Financiera
+Route::get('/fuenteFinanciera', [afFuenteFinancieraController::class, 'index'])->name('FuenteFinanciera.index');
+Route::get('/fuenteFinanciera/create', [afFuenteFinancieraController::class, 'create'])->name('FuenteFinanciera.create');
+Route::post('/fuenteFinanciera', [afFuenteFinancieraController::class, 'store'])->name('FuenteFinanciera.store');
+// Ruta para actualizar datos
+Route::get('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'edit'])->name('FuenteFinanciera.edit');
+Route::put('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'update'])->name('FuenteFinanciera.update');
+// Ruta para eliminar datos
+Route::delete('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'destroy'])->name('FuenteFinanciera.destroy');
+
+//Registro de Vida Útil
+Route::get('/vidaUtil', [afDVidaUtilController::class, 'index'])->name('VidaUtil.index');
+Route::get('/vidaUtil/create', [afDVidaUtilController::class, 'create'])->name('VidaUtil.create');
+Route::post('/vidaUtil', [afDVidaUtilController::class, 'store'])->name('VidaUtil.store');
+// Ruta para actualizar datos
+Route::get('/vidaUtil/{id}', [afDVidaUtilController::class, 'edit'])->name('VidaUtil.edit');
+Route::put('/vidaUtil/{id}', [afDVidaUtilController::class, 'update'])->name('VidaUtil.update');
+// Ruta para eliminar datos
+Route::delete('/vidaUtil/{id}', [afDVidaUtilController::class, 'destroy'])->name('VidaUtil.destroy');
+
+//Registro de Vida Útil
+Route::get('/depreciacion', [afDepreciacionController::class, 'index'])->name('Depreciacion.index');
+Route::get('/depreciacion/create', [afDepreciacionController::class, 'create'])->name('Depreciacion.create');
+Route::post('/depreciacion', [afDepreciacionController::class, 'store'])->name('Depreciacion.store');
+// Ruta para actualizar datos
+Route::get('/depreciacion/{id}', [afDepreciacionController::class, 'edit'])->name('Depreciacion.edit');
+Route::put('/depreciacion/{id}', [afDepreciacionController::class, 'update'])->name('Depreciacion.update');
+// Ruta para eliminar datos
+Route::delete('/depreciacion/{id}', [afDepreciacionController::class, 'destroy'])->name('Depreciacion.destroy');
