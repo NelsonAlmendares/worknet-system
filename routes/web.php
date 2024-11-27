@@ -7,6 +7,7 @@ use App\Http\Controllers\afFuenteFinancieraController;
 use App\Http\Controllers\afTipoBienContableController;
 use App\Http\Controllers\branchController;
 use App\Http\Controllers\companyController;
+use App\Http\Controllers\countryController;
 use App\Http\Controllers\departmentController;
 use App\Http\Controllers\districtController;
 use Illuminate\Support\Facades\Route;
@@ -143,7 +144,7 @@ Route::put('/depreciacion/{id}', [afDepreciacionController::class, 'update'])->n
 // Ruta para eliminar datos
 Route::delete('/depreciacion/{id}', [afDepreciacionController::class, 'destroy'])->name('Depreciacion.destroy');
 
-//Registro de Vida Útil
+//Registro de Bien Contable
 Route::get('/bienContable', [afTipoBienContableController::class, 'index'])->name('BienContable.index');
 Route::get('/bienContable/create', [afTipoBienContableController::class, 'create'])->name('BienContable.create');
 Route::post('/bienContable', [afTipoBienContableController::class, 'store'])->name('BienContable.store');
@@ -152,3 +153,13 @@ Route::get('/bienContable/{id}', [afTipoBienContableController::class, 'edit'])-
 Route::put('/bienContable/{id}', [afTipoBienContableController::class, 'update'])->name('BienContable.update');
 // Ruta para eliminar datos
 Route::delete('/bienContable/{id}', [afTipoBienContableController::class, 'destroy'])->name('BienContable.destroy');
+
+//Registro de País
+Route::get('/country', [countryController::class, 'index'])->name('Country.index');
+Route::get('/country/create', [countryController::class, 'create'])->name('Country.create');
+Route::post('/country', [countryController::class, 'store'])->name('Country.store');
+// Ruta para actualizar datos
+Route::get('/country/{id}', [countryController::class, 'edit'])->name('Country.edit');
+Route::put('/country/{id}', [countryController::class, 'update'])->name('Country.update');
+// Ruta para eliminar datos
+Route::delete('/country/{id}', [countryController::class, 'destroy'])->name('Country.destroy');
