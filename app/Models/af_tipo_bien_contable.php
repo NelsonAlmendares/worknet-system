@@ -16,9 +16,14 @@ class af_tipo_bien_contable extends Model
         'tbc_codigo_contable',
         'tbc_desc',
         'tbc_e',
-        
-         
+
     ]; 
+
+    /*public function af_activos()
+	{
+		return $this->hasMany(AfActivo::class, 'id_tb_contable');
+	}*/
+
     public function getEstadoDescripcionAttribute()
     {
         $estados = [

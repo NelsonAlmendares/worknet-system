@@ -4,6 +4,7 @@ use App\Http\Controllers\afActivoController;
 use App\Http\Controllers\afDepreciacionController;
 use App\Http\Controllers\afDVidaUtilController;
 use App\Http\Controllers\afFuenteFinancieraController;
+use App\Http\Controllers\afTipoBienContableController;
 use App\Http\Controllers\branchController;
 use App\Http\Controllers\companyController;
 use App\Http\Controllers\departmentController;
@@ -132,7 +133,7 @@ Route::put('/vidaUtil/{id}', [afDVidaUtilController::class, 'update'])->name('Vi
 // Ruta para eliminar datos
 Route::delete('/vidaUtil/{id}', [afDVidaUtilController::class, 'destroy'])->name('VidaUtil.destroy');
 
-//Registro de Vida Útil
+//Registro de depreciación
 Route::get('/depreciacion', [afDepreciacionController::class, 'index'])->name('Depreciacion.index');
 Route::get('/depreciacion/create', [afDepreciacionController::class, 'create'])->name('Depreciacion.create');
 Route::post('/depreciacion', [afDepreciacionController::class, 'store'])->name('Depreciacion.store');
@@ -141,3 +142,13 @@ Route::get('/depreciacion/{id}', [afDepreciacionController::class, 'edit'])->nam
 Route::put('/depreciacion/{id}', [afDepreciacionController::class, 'update'])->name('Depreciacion.update');
 // Ruta para eliminar datos
 Route::delete('/depreciacion/{id}', [afDepreciacionController::class, 'destroy'])->name('Depreciacion.destroy');
+
+//Registro de Vida Útil
+Route::get('/bienContable', [afTipoBienContableController::class, 'index'])->name('BienContable.index');
+Route::get('/bienContable/create', [afTipoBienContableController::class, 'create'])->name('BienContable.create');
+Route::post('/bienContable', [afTipoBienContableController::class, 'store'])->name('BienContable.store');
+// Ruta para actualizar datos
+Route::get('/bienContable/{id}', [afTipoBienContableController::class, 'edit'])->name('BienContable.edit');
+Route::put('/bienContable/{id}', [afTipoBienContableController::class, 'update'])->name('BienContable.update');
+// Ruta para eliminar datos
+Route::delete('/bienContable/{id}', [afTipoBienContableController::class, 'destroy'])->name('BienContable.destroy');
