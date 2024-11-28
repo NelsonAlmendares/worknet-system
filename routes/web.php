@@ -15,6 +15,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\municipController;
 use App\Http\Controllers\municipNewController;
 use App\Http\Controllers\positionController;
+use App\Http\Controllers\solicitudController;
 use App\Http\Controllers\usuarioController;
 use App\Models\departmentModelo;
 use App\Models\districtModelo;
@@ -163,3 +164,13 @@ Route::get('/country/{id}', [countryController::class, 'edit'])->name('Country.e
 Route::put('/country/{id}', [countryController::class, 'update'])->name('Country.update');
 // Ruta para eliminar datos
 Route::delete('/country/{id}', [countryController::class, 'destroy'])->name('Country.destroy');
+
+//Registro de País
+Route::get('/solicitud', [solicitudController::class, 'index'])->name('Solicitud.index');
+Route::get('/solicitud/create', [solicitudController::class, 'create'])->name('Solicitud.create');
+Route::post('/solicitud', [solicitudController::class, 'store'])->name('Solicitud.store');
+// Ruta para actualizar datos
+Route::get('/solicitud/{id}', [solicitudController::class, 'edit'])->name('Solicitud.edit');
+Route::put('/solicitud/{id}', [solicitudController::class, 'update'])->name('Solicitud.update');
+// Ruta para eliminar datos
+Route::delete('/solicitud/{id}', [solicitudController::class, 'destroy'])->name('Solicitud.destroy');
