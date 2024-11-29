@@ -190,18 +190,18 @@
           </nav>
 
           <div class="p-4">
-            <h2>Adminisrtación de Usuarios</h2>
+            <h2>Adminisrtación de Empresas</h2>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
+                  <li class="breadcrumb-item active" aria-current="page">Empresas</li>
                 </ol>
-              </nav>
+            </nav>
 
-              <div class="mt-5">
+            <div class="mt-5">
                 <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Empresas</h3>
+                    <h4 class="text-center mb-3">Listado de Empresas</h4>
                     @if($companies->isEmpty())
                         <p>No hay empresas registradas.</p>
                     @else
@@ -211,8 +211,10 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
+                                <th>Empresa</th>
                                 <th>NIT</th>
                                 <th>Registro</th>
+                                <th>Nacimiento</th>
                                 <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
@@ -223,8 +225,10 @@
                                     <td>{{ $company->idcompany }}</td>
                                     <td>{{ $company->compname }}</td>
                                     <td>{{ $company->compdesc }}</td>
+                                    <td>{{ $company->compsr }}</td>
                                     <td>{{ $company->compnit }}</td>
                                     <td>{{ $company->compnrc }}</td>
+                                    <td>{{ $company->compborndate }}</td>
                                     <td>{{ $company->comp_e ?? 'No disponible' }}</td>
                                     <td>
                                         <a href="{{ route('Sucursal.edit', $company->idcompany) }}" class="btn btn-warning btn-sm">Editar</a>
@@ -248,7 +252,7 @@
 
             <div class="add-center">
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar empleados <i class='bx bx-user-pin custom-icon-size' ></i>
+                    Agregar Empresas <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
                 <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
@@ -267,38 +271,55 @@
                         <div class="modal-body">
                             <div class="card-body">
                                 <!-- Formulario para agregar usuario -->
-                                <form action="{{ route('Usuarios.store') }}" method="POST">
+                                <form action="{{ route('Sucursal.store') }}" method="POST">
                                     @csrf
 
                                     <!-- Nombre de Usuario -->
                                     <div class="mb-3">
-                                        <label for="user_name" class="form-label">Nombre de Usuario</label>
-                                        <input type="text" class="form-control" name="user_name" id="user_name" required>
-                                    </div>
-
-                                    <!-- Contraseña -->
-                                    <div class="mb-3">
-                                        <label for="user_password" class="form-label">Contraseña</label>
-                                        <input type="password" class="form-control" name="user_password" id="user_password" required>
+                                        <label for="compname" class="form-label">Nombre de la empresa</label>
+                                        <input type="text" class="form-control" name="compname" id="compname" required>
                                     </div>
 
                                     <!-- ID del Empleado -->
                                     <div class="mb-3">
-                                        <label for="user_idemp" class="form-label">ID del Empleado</label>
-                                        <input type="number" class="form-control" name="user_idemp" id="user_idemp" required>
+                                        <label for="compdesc" class="form-label">Descripción</label>
+                                        <input type="text" class="form-control" name="compdesc" id="compdesc" required>
+                                    </div>
+
+                                    <!-- ID del Empleado -->
+                                    <div class="mb-3">
+                                        <label for="compsr" class="form-label">Empresa</label>
+                                        <input type="text" class="form-control" name="compsr" id="compsr" required>
+                                    </div>
+
+                                    <!-- ID del Empleado -->
+                                    <div class="mb-3">
+                                        <label for="compnit" class="form-label">NIT</label>
+                                        <input type="number" class="form-control" name="compnit" id="compnit" required>
+                                    </div>
+                                    <!-- Contraseña -->
+                                    <div class="mb-3">
+                                        <label for="compnrc" class="form-label">Registro</label>
+                                        <input type="number" class="form-control" name="compnrc" id="compnrc" required>
+                                    </div>
+
+                                    <!-- ID del Empleado -->
+                                    <div class="mb-3">
+                                        <label for="compborndate" class="form-label">Nacimiento</label>
+                                        <input type="date" class="form-control" name="compborndate" id="compborndate" required>
                                     </div>
 
                                     <!-- Estado -->
                                     <div class="mb-3">
-                                        <label for="user_e" class="form-label">Estado</label>
-                                        <select name="user_e" id="user_e" class="form-control" required>
+                                        <label for="comp_e" class="form-label">Estado</label>
+                                        <select name="comp_e" id="comp_e" class="form-control" required>
                                             <option value="A">Activo</option>
                                             <option value="I">Inactivo</option>
                                         </select>
                                     </div>
 
                                     <button type="submit" class="btn btn-success fw-bold">
-                                        Crear Usuario <i class='bx bx-user-plus custom-icon-size'></i>
+                                        Crear Empresas <i class='bx bx-user-plus custom-icon-size'></i>
                                     </button>
                                 </form>
                             </div>
@@ -347,14 +368,14 @@
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 3000,
+                timer: 8000,
                 timerProgressBar: true
             });
         @endif
     });
 
 
-    function confirmDelete(iduser) {
+    function confirmDelete(idcompany) {
         Swal.fire({
             title: '¿Estás seguro?',
             text: "¡Esta acción no se puede deshacer!",
@@ -366,7 +387,7 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById(`deleteForm-${iduser}`).submit();
+                document.getElementById(`deleteForm-${idcompany}`).submit();
                 setTimeout(() => {
                     Swal.fire({
                         icon: 'success',

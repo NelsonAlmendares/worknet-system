@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>ADMINISTRACION</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -12,7 +13,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body>
+<body id="no-active-modal-before">
 
 <div class="d-flex">
     <div class="sidebar">
@@ -30,7 +31,7 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
                 <span class="font_custom-white">
                     <i class='bx bxs-dashboard' ></i>
                     Dashboard
@@ -39,13 +40,11 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Empleados.index') }}">
-                    <span class="font_custom-white">
-                        <i class='bx bxs-user' ></i>
-                        Empleados
-                    </span>
-                </a>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
+                <span class="font_custom-white">
+                    <i class='bx bxs-user' ></i>
+                    Empleado
+                </span>
             </div>
         </div>
 
@@ -76,7 +75,9 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">Agregar</a>
+                <a href="#" class="submenu-item">General</a>
+                <a href="#" class="submenu-item">Security</a>
+                <a href="#" class="submenu-item">Preferences</a>
             </div>
         </div>
 
@@ -93,8 +94,9 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Agregar departamento</a>
-                <a href="#" class="submenu-item">Reportes</a>
+                <a href="#" class="submenu-item ">Analytics</a>
+                <a href="#" class="submenu-item">Reports</a>
+                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -107,8 +109,9 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Agregar distritos</a>
-                <a href="#" class="submenu-item">Reportes</a>
+                <a href="#" class="submenu-item ">Analytics</a>
+                <a href="#" class="submenu-item">Reports</a>
+                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -121,7 +124,9 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Agregar municipios</a>
+                <a href="#" class="submenu-item ">Analytics</a>
+                <a href="#" class="submenu-item">Reports</a>
+                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -131,38 +136,45 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
-                    <span class="font_custom-white">
-                        <i class='bx bxs-food-menu' ></i>
-                            Compañía
-                    </span>
-                </a>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+                <span class="font_custom-white">
+                    <i class='bx bxs-food-menu' ></i>
+                    Compañía
+                </span>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
-                    <span class="font_custom-white">
-                        <i class='bx bx-clipboard' ></i>
-                        Sucursal
-                    </span>
-                </a>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+                <span class="font_custom-white">
+                    <i class='bx bx-clipboard' ></i>
+                    Sucursal
+                </span>
+            </div>
+        </div>
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+                <span class="font_custom-white">
+                    <i class='bx bx-list-check' ></i>
+                    Cargo
+                </span>
             </div>
         </div>
 
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse">
-                <a href="{{ route('Cargos.index') }}">
+                <a href="{{ route('activos.index') }}">
                     <span class="font_custom-white">
-                        <i class='bx bx-list-check' ></i>
-                        Cargo
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
                     </span>
                 </a>
             </div>
         </div>
+
     </div>
+
     <!-- Main Content Area -->
 
     <div class="main">
@@ -189,67 +201,74 @@
           </nav>
 
           <div class="p-4">
-            <h2>Adminisrtación de Cargos</h2>
+            <h2>Activos</h2>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Cargos</li>
+                  <li class="breadcrumb-item active" aria-current="page">Activos</li>
                 </ol>
               </nav>
 
-              <div class="mt-5">
+            <div class="mt-5">
                 <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Puestos</h3>
-                    @if($positions->isEmpty())
-                        <p>No hay puestos registrados.</p>
+                    <h3 class="text-center mb-3">Activos fijos y contables</h3>
+                    @if($activos->isEmpty())
+                        <p>No hay activos registrados.</p>
                     @else
-                    <table class="table table-striped table-hover">
-                        <thead>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Codigo de activo</th>
+                            <th>Tipo de bien</th>
+                            <th>Fuente Financiera</th>
+                            <th>Perteneciente</th>
+                            <th>Nombre del bien</th>
+                            {{-- <th>Fecha de Nacimiento</th> --}}
+                            <th>Modelo</th>
+                            <th>Vida util</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($activos as $activo)
                             <tr class="text-center">
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
-                                <th>Estado</th>
-                                <th>Requisitos</th>
-                                <th>Unidad</th>
-                                <th>Tipo de Puesto</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($positions as $position)
-                                <tr class="text-center">
-                                    <td>{{ $position->idposition }}</td>
-                                    <td>{{ $position->positname }}</td>
-                                    <td>{{ $position->positdesc ?? 'No disponible' }}</td>
-                                    <td>{{ $position->positstate }}</td>
-                                    <td>{{ $position->positrequest ?? 'No disponible' }}</td>
-                                    <td>{{ $position->posit_idunit }}</td>
-                                    <td>{{ $position->posit_idtypeposit }}</td>
-                                    <td>
-                                        <a href="{{ route('Cargos.edit', $position->idposition) }}" class="btn btn-warning btn-sm">Editar <i class='bx bxs-edit-alt' ></i></a>
+                                <td>{{ $activo->a_cod_activo_interno_ant }}</td>
+                                {{-- <td>{{ \Carbon\Carbon::parse($empleado->empborndate)->format('d-m-Y') }}</td> --}}
+                                <td>{{ $activo->a_codigo_activo ?? 'No disponible' }}</td>
+                                <td>{{ $activo->a_id_tb_contable }}</td>
+                                <td>{{ $activo->a_id_f_financiera }}</td>
+                                <td>{{ $activo->a_responsable_id_emp }}</td>
+                                <td>{{ $activo->a_nombre }}</td>
+                                <td>{{ $activo->a_modelo }}</td>
+                                <td>{{ $activo->a_vidautil }}</td>
+                                <td>
 
-                                        <form id="deleteForm-{{ $position->idposition }}" action="{{ route('Cargos.destroy', $position->idposition) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $position->idposition }})">
-                                                Eliminar <i class='bx bxs-trash custom-icon-size'></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @endif
+                                    <a href="{{ route('Empleados.edit', $activo->id_activo) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                                    <form id="deleteForm-{{ $activo->id_activo }}" action="{{ route('Empleados.destroy', $activo->id_activo) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $activo->id_activo }})">
+                                            Eliminar <i class='bx bxs-trash custom-icon-size'></i>
+                                        </button>
+                                    </form>
+
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+
+                @endif
+
                 </div>
             </div>
 
-
             <div class="add-center">
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar un cargo <i class='bx bx-save custom-icon-size'></i>
+                    Agregar empleados <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
                 <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
@@ -262,77 +281,22 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar un nuevo cargo</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Empleado</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="card-body">
-                                <!-- Formulario para agregar usuario -->
-                                <form action="{{ route('Cargos.store') }}" method="POST">
-                                    @csrf
-                                    <div class="form-group mb-3">
-                                        <label for="positname">Nombre de la Posición:</label>
-                                        <input type="text" name="positname" id="positname" class="form-control" required>
-                                    </div>
 
-                                    <div class="form-group mb-3">
-                                        <label for="positnameb">Descripción:</label>
-                                        <input type="text" name="positnameb" id="positnameb" class="form-control">
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="positdesc">positdesc:</label>
-                                        <textarea name="positdesc" id="positdesc" class="form-control"></textarea>
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="positstate">Estado:</label>
-                                        <input type="text" name="positstate" id="positstate" class="form-control">
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="positrequest">Solicitud:</label>
-                                        <textarea name="positrequest" id="positrequest" class="form-control"></textarea>
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="posit_idunit">ID de Unidad:</label>
-                                        <input type="number" name="posit_idunit" id="posit_idunit" class="form-control">
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="posit_idunitb">ID de Unidad B:</label>
-                                        <input type="number" name="posit_idunitb" id="posit_idunitb" class="form-control">
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="posit_idtypeposit">Tipo de Posición:</label>
-                                        <select name="posit_idtypeposit" id="posit_idtypeposit" class="form-control">
-                                        
-                                            @foreach ($typePositions as $typePosition)
-                                                <option value="{{ $typePosition->idtypeposit }}">{{ $typePosition->typepositname }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group mb-3">
-                                        <label for="posit_e">Estado de la Posición:</label>
-                                        <input type="text" name="posit_e" id="posit_e" class="form-control">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary mt-3">Registrar Posición</button>
-                                </form>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">
-                                Cerrar <i class='bx bxs-x-circle custom-icon-size'></i>
+                                Cerrar <i class='bx bxs-x-circle custom-icon-size' ></i>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-
 
           </div>
     </div>
@@ -368,14 +332,14 @@
                 toast: true,
                 position: 'top-end',
                 showConfirmButton: false,
-                timer: 9000,
+                timer: 3000,
                 timerProgressBar: true
             });
         @endif
     });
 
 
-    function confirmDelete(idposition) {
+    function confirmDelete(employeeId) {
         Swal.fire({
             title: '¿Estás seguro?',
             text: "¡Esta acción no se puede deshacer!",
@@ -387,7 +351,7 @@
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById(`deleteForm-${idposition}`).submit();
+                document.getElementById(`deleteForm-${employeeId}`).submit();
                 setTimeout(() => {
                     Swal.fire({
                         icon: 'success',
@@ -412,13 +376,15 @@
         });
     }
 </script>
+
+{{-- Funcion para las flechas del menu --}}
 <script>
-document.querySelectorAll('.menu-item').forEach(item => {
-    item.addEventListener('click', function() {
-        const chevron = this.querySelector('.fa-chevron-down');
-        chevron.classList.toggle('rotate-icon');
+    document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const chevron = this.querySelector('.fa-chevron-down');
+            chevron.classList.toggle('rotate-icon');
+        });
     });
-});
 </script>
 
 </body>

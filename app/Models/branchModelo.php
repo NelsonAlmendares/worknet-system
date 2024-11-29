@@ -13,22 +13,15 @@ class branchModelo extends Model
     
     protected $primaryKey = 'idbranch'; // Clave primaria
 
+    public $timestamps = false; 
+
     // Definir los campos que se pueden asignar masivamente
     protected $fillable = [
         'brnname',
         'brnborndate',
+        'brnemail',
+        'brntel',
         'brn_compid',
         'brn_e',
-        'brn_email',
-        'brn_tel',
-        'brn_logo',
     ];
-
-    // Relación con la tabla `company`
-    /*
-    public function company()
-    {
-        return $this->belongsTo(Company::class, 'brn_compid', 'idcompany');
-    }
-    */
 }

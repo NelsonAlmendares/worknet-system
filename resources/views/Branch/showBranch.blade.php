@@ -246,7 +246,7 @@
 
             <div class="mt-5">
                 <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Sucursales</h3>
+                    <h3 class="text-center mb-3">Lista de Compañías</h3>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -257,7 +257,7 @@
                                 <th>Estado</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
-                                <th>Logo</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -268,20 +268,182 @@
                                 <td>{{ $branch->brnborndate }}</td>
                                 <td>{{ $branch->brn_compid }}</td>
                                 <td>{{ $branch->brn_e }}</td>
-                                <td>{{ $branch->brn_email }}</td>
-                                <td>{{ $branch->brn_tel }}</td>
-                                <td>{{ $branch->brn_logo }}</td>
+                                <td>{{ $branch->brnemail }}</td>
+                                <td>{{ $branch->brntel }}</td>
+                                <td>
+                                        <a href="{{ route('Branches.edit', $branch->idbranch) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                                        <form id="deleteForm-{{ $branch->idbranch }}" action="{{ route('Branches.destroy', $branch->idbranch) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $branch->idbranch }})">
+                                                Eliminar <i class='bx bxs-trash custom-icon-size'></i>
+                                            </button>
+                                        </form>
+                                    </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="add-center">
+                <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Compañías <i class='bx bx-user-pin custom-icon-size' ></i>
+                </button>
+
+                <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
+                    Repores <i class='bx bxs-report custom-icon-size' ></i>
+                </button>
+            </div>
+
+            <!-- Modal para agregar datos -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Compañías</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="card-body">
+                                <!-- Formulario para agregar Compañías -->
+                                <form action="{{ route('Branches.store') }}" method="POST">
+                                    @csrf
+
+                                    <!-- Nombre de la Sucursal -->
+                                    <div class="mb-3">
+                                        <label for="brnname" class="form-label">Nombre de la Sucursal</label>
+                                        <input type="text" class="form-control" name="brnname" id="brnname" required>
+                                    </div>
+
+                                    <!-- Fecha de Nacimiento -->
+                                    <div class="mb-3">
+                                        <label for="brnborndate" class="form-label">Fecha de Fundación</label>
+                                        <input type="date" class="form-control" name="brnborndate" id="brnborndate">
+                                    </div>
+
+                                    <!-- Correo Electrónico -->
+                                    <div class="mb-3">
+                                        <label for="brnemail" class="form-label">Correo Electrónico</label>
+                                        <input type="email" class="form-control" name="brnemail" id="brnemail">
+                                    </div>
+
+                                    <!-- Teléfono -->
+                                    <div class="mb-3">
+                                        <label for="brntel" class="form-label">Teléfono</label>
+                                        <input type="text" class="form-control" name="brntel" id="brntel">
+                                    </div>
+
+                                    <!-- ID de la Compañía -->
+                                    <div class="mb-3">
+                                        <label for="brn_compid" class="form-label">ID de la Compañía</label>
+                                        <input type="number" class="form-control" name="brn_compid" id="brn_compid">
+                                    </div>
+
+                                    <!-- Estado -->
+                                    <div class="mb-3">
+                                        <label for="brn_e" class="form-label">Estado</label>
+                                        <select name="brn_e" id="brn_e" class="form-control" required>
+                                            <option value="A">Activo</option>
+                                            <option value="I">Inactivo</option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success fw-bold">
+                                        Crear Sucursal <i class='bx bx-user-plus custom-icon-size'></i>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">
+                                Cerrar <i class='bx bxs-x-circle custom-icon-size'></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
           </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Alerts para las acciones del usuario
+    document.addEventListener("DOMContentLoaded", function() {
+        let modal = document.getElementById('exampleModal');
+
+        @if (Session::has('success'))
+            // Mostrar el Toast de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: "{{ Session::get('success') }}",
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        @endif
+
+        @if ($errors->has('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ $errors->first('error') }}",
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 8000,
+                timerProgressBar: true
+            });
+        @endif
+    });
+
+
+    function confirmDelete(idbranch) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡Esta acción no se puede deshacer!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`deleteForm-${idbranch}`).submit();
+                setTimeout(() => {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: "{{ Session::get('success') }}",
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        timerProgressBar: true
+                    });
+                }, 2000);
+            }
+        });
+    }
+
+    function showCommingSoon () {
+        Swal.fire({
+            title: "Próximamente...",
+            text: "Actualmente en desarrollo",
+            icon: "info"
+        });
+    }
+</script>
 <script>
 document.querySelectorAll('.menu-item').forEach(item => {
     item.addEventListener('click', function() {

@@ -1,0 +1,7 @@
+Hubo un error al registrar la posición:
+ SQLSTATE[42S22]: Column not found: 1054 Unknown column &#039;updated_at&#039;
+ in &#039;field list&#039;
+(Connection: mysql, SQL: insert into `position` (`positname`, `positnameb`, `positdesc`, `positstate`, `positrequest`, `posit_idunit`, `posit_idunitb`, `posit_idtypeposit`, `posit_e`, `updated_at`, `created_at`)
+values (adasdas, asdasd, asdasdasd, O, adasdasd, 1, 1, 1, A, 2024-11-28 01:49:19, 2024-11-28 01:49:19))
+
+Hubo un error al registrar la posición: SQLSTATE[42S22]: Column not found: 1054 Unknown column &#039;updated_at&#039; in &#039;field list&#039; (Connection: mysql, SQL: insert into `company` (`compname`, `compdesc`, `compsr`, `compnit`, `compnrc`, `compborndate`, `comp_e`, `updated_at`, `created_at`) values (asdasd, asdasdasd, asdasd, 2343243333, 0, 2024-11-19, A, 2024-11-28 05:51:40, 2024-11-28 05:51:40))

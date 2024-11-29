@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\positionController;
 use App\Http\Controllers\usuarioController;
+use App\Http\Controllers\afActivoController;
+
 
 
 // LOGIN
-Route::get('/', function () {
-    return view('login');
-})->name('login');
+Route::get('/', function () {return view('login');})->name('login');
 Route::get('/login', [UsuarioController::class, 'Login'])->name('login');
 Route::post('/login', [UsuarioController::class, 'LoginPost'])->name('Usuario.LoginPost');
 
@@ -44,20 +44,34 @@ Route::delete('/personaRegister/{id}', [EmpleadoController::class, 'destroy'])->
 // REGISTRO DE COMPAÑIA
 Route::get('/branchRegister', [branchController::class, 'index'])->name('Branches.index');
 Route::get('/branchRegister/{id}', [branchController::class, 'edit'])->name('Branches.edit');
-Route::put('/branchRegister/{idcompany}', [usuarioController::class, 'update'])->name('Branches.update');
+Route::put('/branchRegister/{idbranch}', [branchController::class, 'update'])->name('Branches.update');
+Route::post('/branchRegister', [branchController::class, 'store'])->name('Branches.store');
 // Ruta para eliminar datos
-Route::delete('branchRegister/{idcompany}', [UsuarioController::class, 'destroy'])->name('Branches.destroy');
+Route::delete('branchRegister/{idbranch}', [branchController::class, 'destroy'])->name('Branches.destroy');
 
 // REGISTRO DE SUCURSAL
 Route::get('/sucursalRegister', [companyController::class, 'index'])->name('Sucursal.index');
 Route::get('/sucursalRegister/{id}', [companyController::class, 'edit'])->name('Sucursal.edit');
-Route::put('/sucursalRegister/{idcompany}', [usuarioController::class, 'update'])->name('Sucursal.update');
+Route::put('/sucursalRegister/{idcompany}', [companyController::class, 'update'])->name('Sucursal.update');
+Route::post('/sucursalRegister', [companyController::class, 'store'])->name('Sucursal.store');
 // Ruta para eliminar datos
-Route::delete('sucursalRegister/{idcompany}', [UsuarioController::class, 'destroy'])->name('Sucursal.destroy');
+Route::delete('sucursalRegister/{idcompany}', [companyController::class, 'destroy'])->name('Sucursal.destroy');
 
 // REGISTRO DE CARGOS
 Route::get('/cargosRegister', [positionController::class, 'index'])->name('Cargos.index');
 Route::get('/cargosRegister/{id}', [positionController::class, 'edit'])->name('Cargos.edit');
-Route::put('/cargosRegister/{idposition}', [usuarioController::class, 'update'])->name('Cargos.update');
+Route::post('/cargosRegister', [positionController::class, 'store'])->name('Cargos.store');
+Route::put('/cargosRegister/{idposition}', [positionController::class, 'update'])->name('Cargos.update');
 // Ruta para eliminar datos
-Route::delete('cargosRegister/{idposition}', [UsuarioController::class, 'destroy'])->name('Cargos.destroy');
+Route::delete('cargosRegister/{idposition}', [positionController::class, 'destroy'])->name('Cargos.destroy');
+
+// REGISTRO DE USUARIOS
+Route::get('/afActivoRegister', [afActivoController::class, 'index'])->name('activos.index');
+Route::get('/afActivoRegister/create', [afActivoController::class, 'create'])->name('activos.createUsuario');
+Route::post('/afActivoRegister', [afActivoController::class, 'store'])->name('activos.store');
+// Ruta para actualizar datos
+Route::get('/afActivoRegister/{id}', [afActivoController::class, 'edit'])->name('activos.edit');
+Route::put('/afActivoRegister/{idusuario}', [afActivoController::class, 'update'])->name('activos.update');
+// Ruta para eliminar datos
+Route::delete('afActivoRegister/{iduser}', [afActivoController::class, 'destroy'])->name('activos.destroy');
+

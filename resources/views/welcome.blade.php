@@ -162,6 +162,21 @@
                 </a>
             </div>
         </div>
+
+        <div class="list-menu-small">
+            <p class="text-small">Activos</p>
+        </div>
+
+        <div>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('activos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
+                    </span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content Area -->

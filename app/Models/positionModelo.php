@@ -10,17 +10,20 @@ class positionModelo extends Model
     use HasFactory;
 
     protected $table = 'position';
+
     protected $primaryKey = 'idposition';
+
+    public $timestamps = false; 
 
     protected $fillable = [
         'positname',
+        'positnameb',
         'positdesc',
         'positstate',
         'positrequest',
         'posit_idunit',
-        'posit_idtypeposit',
-        'posit_nameb',
-        'posit_e',
         'posit_idunitb',
+        'posit_idtypeposit',
+        'posit_e',
     ];
 }

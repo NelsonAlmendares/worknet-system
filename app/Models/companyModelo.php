@@ -10,7 +10,10 @@ class companyModelo extends Model
     use HasFactory;
 
     protected $table = 'company';
+
     protected $primaryKey = 'idcompany';
+
+    public $timestamps = false; 
 
     protected $fillable = [
         'compname',

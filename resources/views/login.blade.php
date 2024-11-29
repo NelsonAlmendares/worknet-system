@@ -17,7 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Login</h4>
-                            <form id="login-form">
+                            <form id="login-form" action="{{ route('Usuario.LoginPost') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="user_name" class="form-label">Usuario</label>
