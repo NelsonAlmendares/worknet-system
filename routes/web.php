@@ -1,14 +1,24 @@
 <?php
 
+use App\Http\Controllers\afActivoController;
+use App\Http\Controllers\afDepreciacionController;
+use App\Http\Controllers\afDVidaUtilController;
+use App\Http\Controllers\afFuenteFinancieraController;
+use App\Http\Controllers\afTipoBienContableController;
 use App\Http\Controllers\branchController;
 use App\Http\Controllers\companyController;
+use App\Http\Controllers\countryController;
+use App\Http\Controllers\departmentController;
+use App\Http\Controllers\districtController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\municipController;
+use App\Http\Controllers\municipNewController;
 use App\Http\Controllers\positionController;
+use App\Http\Controllers\solicitudController;
 use App\Http\Controllers\usuarioController;
-use App\Http\Controllers\afActivoController;
-
-
+use App\Models\departmentModelo;
+use App\Models\districtModelo;
 
 // LOGIN
 Route::get('/', function () {return view('login');})->name('login');
@@ -75,3 +85,195 @@ Route::put('/afActivoRegister/{idusuario}', [afActivoController::class, 'update'
 // Ruta para eliminar datos
 Route::delete('afActivoRegister/{iduser}', [afActivoController::class, 'destroy'])->name('activos.destroy');
 
+
+
+//Registro de Municipios
+Route::get('/municip', [municipController::class, 'index'])->name('Municip.index');
+Route::get('/municip/create', [municipController::class, 'create'])->name('Municip.create');
+Route::post('/municip', [municipController::class, 'store'])->name('Municip.store');
+// Ruta para actualizar datos
+Route::get('/municip/{id}', [municipController::class, 'edit'])->name('Municip.edit');
+Route::put('/municip/{id}', [municipController::class, 'update'])->name('Municip.update');
+// Ruta para eliminar datos
+Route::delete('/municip/{id}', [municipController::class, 'destroy'])->name('Municip.destroy');
+
+//Registro de Municipios (nuevo)
+Route::get('/municipNew', [municipNewController::class, 'index'])->name('MunicipNew.index');
+Route::get('/municipNew/create', [municipNewController::class, 'create'])->name('MunicipNew.create');
+Route::post('/municipNew', [municipNewController::class, 'store'])->name('MunicipNew.store');
+// Ruta para actualizar datos
+Route::get('/municipNew/{id}', [municipNewController::class, 'edit'])->name('MunicipNew.edit');
+Route::put('/municipNew/{id}', [municipNewController::class, 'update'])->name('MunicipNew.update');
+// Ruta para eliminar datos
+Route::delete('/municipNew/{id}', [municipNewController::class, 'destroy'])->name('MunicipNew.destroy');
+
+//Registro de Distritos
+Route::get('/district', [districtController::class, 'index'])->name('District.index');
+Route::get('/district/create', [districtController::class, 'create'])->name('District.create');
+Route::post('/district', [districtController::class, 'store'])->name('District.store');
+// Ruta para actualizar datos
+Route::get('/district/{id}', [districtController::class, 'edit'])->name('District.edit');
+Route::put('/district/{id}', [districtController::class, 'update'])->name('District.update');
+// Ruta para eliminar datos
+Route::delete('/district/{id}', [districtController::class, 'destroy'])->name('District.destroy');
+
+//Registro de Departamentos
+Route::get('/department', [departmentController::class, 'index'])->name('Department.index');
+Route::get('/department/create', [departmentController::class, 'create'])->name('Department.create');
+Route::post('/department', [departmentController::class, 'store'])->name('Department.store');
+// Ruta para actualizar datos
+Route::get('/department/{id}', [departmentController::class, 'edit'])->name('Department.edit');
+Route::put('/department/{id}', [departmentController::class, 'update'])->name('Department.update');
+// Ruta para eliminar datos
+Route::delete('/department/{id}', [departmentController::class, 'destroy'])->name('Department.destroy');
+
+//Registro de Fuente Financiera
+Route::get('/fuenteFinanciera', [afFuenteFinancieraController::class, 'index'])->name('FuenteFinanciera.index');
+Route::get('/fuenteFinanciera/create', [afFuenteFinancieraController::class, 'create'])->name('FuenteFinanciera.create');
+Route::post('/fuenteFinanciera', [afFuenteFinancieraController::class, 'store'])->name('FuenteFinanciera.store');
+// Ruta para actualizar datos
+Route::get('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'edit'])->name('FuenteFinanciera.edit');
+Route::put('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'update'])->name('FuenteFinanciera.update');
+// Ruta para eliminar datos
+Route::delete('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'destroy'])->name('FuenteFinanciera.destroy');
+
+//Registro de Vida Útil
+Route::get('/vidaUtil', [afDVidaUtilController::class, 'index'])->name('VidaUtil.index');
+Route::get('/vidaUtil/create', [afDVidaUtilController::class, 'create'])->name('VidaUtil.create');
+Route::post('/vidaUtil', [afDVidaUtilController::class, 'store'])->name('VidaUtil.store');
+// Ruta para actualizar datos
+Route::get('/vidaUtil/{id}', [afDVidaUtilController::class, 'edit'])->name('VidaUtil.edit');
+Route::put('/vidaUtil/{id}', [afDVidaUtilController::class, 'update'])->name('VidaUtil.update');
+// Ruta para eliminar datos
+Route::delete('/vidaUtil/{id}', [afDVidaUtilController::class, 'destroy'])->name('VidaUtil.destroy');
+
+//Registro de depreciación
+Route::get('/depreciacion', [afDepreciacionController::class, 'index'])->name('Depreciacion.index');
+Route::get('/depreciacion/create', [afDepreciacionController::class, 'create'])->name('Depreciacion.create');
+Route::post('/depreciacion', [afDepreciacionController::class, 'store'])->name('Depreciacion.store');
+// Ruta para actualizar datos
+Route::get('/depreciacion/{id}', [afDepreciacionController::class, 'edit'])->name('Depreciacion.edit');
+Route::put('/depreciacion/{id}', [afDepreciacionController::class, 'update'])->name('Depreciacion.update');
+// Ruta para eliminar datos
+Route::delete('/depreciacion/{id}', [afDepreciacionController::class, 'destroy'])->name('Depreciacion.destroy');
+
+//Registro de Bien Contable
+Route::get('/bienContable', [afTipoBienContableController::class, 'index'])->name('BienContable.index');
+Route::get('/bienContable/create', [afTipoBienContableController::class, 'create'])->name('BienContable.create');
+Route::post('/bienContable', [afTipoBienContableController::class, 'store'])->name('BienContable.store');
+// Ruta para actualizar datos
+Route::get('/bienContable/{id}', [afTipoBienContableController::class, 'edit'])->name('BienContable.edit');
+Route::put('/bienContable/{id}', [afTipoBienContableController::class, 'update'])->name('BienContable.update');
+// Ruta para eliminar datos
+Route::delete('/bienContable/{id}', [afTipoBienContableController::class, 'destroy'])->name('BienContable.destroy');
+
+//Registro de País
+Route::get('/country', [countryController::class, 'index'])->name('Country.index');
+Route::get('/country/create', [countryController::class, 'create'])->name('Country.create');
+Route::post('/country', [countryController::class, 'store'])->name('Country.store');
+// Ruta para actualizar datos
+Route::get('/country/{id}', [countryController::class, 'edit'])->name('Country.edit');
+Route::put('/country/{id}', [countryController::class, 'update'])->name('Country.update');
+// Ruta para eliminar datos
+Route::delete('cargosRegister/{idposition}', [UsuarioController::class, 'destroy'])->name('Cargos.destroy');
+
+
+//Registro de Municipios
+Route::get('/municip', [municipController::class, 'index'])->name('Municip.index');
+Route::get('/municip/create', [municipController::class, 'create'])->name('Municip.create');
+Route::post('/municip', [municipController::class, 'store'])->name('Municip.store');
+// Ruta para actualizar datos
+Route::get('/municip/{id}', [municipController::class, 'edit'])->name('Municip.edit');
+Route::put('/municip/{id}', [municipController::class, 'update'])->name('Municip.update');
+// Ruta para eliminar datos
+Route::delete('/municip/{id}', [municipController::class, 'destroy'])->name('Municip.destroy');
+
+//Registro de Municipios (nuevo)
+Route::get('/municipNew', [municipNewController::class, 'index'])->name('MunicipNew.index');
+Route::get('/municipNew/create', [municipNewController::class, 'create'])->name('MunicipNew.create');
+Route::post('/municipNew', [municipNewController::class, 'store'])->name('MunicipNew.store');
+// Ruta para actualizar datos
+Route::get('/municipNew/{id}', [municipNewController::class, 'edit'])->name('MunicipNew.edit');
+Route::put('/municipNew/{id}', [municipNewController::class, 'update'])->name('MunicipNew.update');
+// Ruta para eliminar datos
+Route::delete('/municipNew/{id}', [municipNewController::class, 'destroy'])->name('MunicipNew.destroy');
+
+//Registro de Distritos
+Route::get('/district', [districtController::class, 'index'])->name('District.index');
+Route::get('/district/create', [districtController::class, 'create'])->name('District.create');
+Route::post('/district', [districtController::class, 'store'])->name('District.store');
+// Ruta para actualizar datos
+Route::get('/district/{id}', [districtController::class, 'edit'])->name('District.edit');
+Route::put('/district/{id}', [districtController::class, 'update'])->name('District.update');
+// Ruta para eliminar datos
+Route::delete('/district/{id}', [districtController::class, 'destroy'])->name('District.destroy');
+
+//Registro de Departamentos
+Route::get('/department', [departmentController::class, 'index'])->name('Department.index');
+Route::get('/department/create', [departmentController::class, 'create'])->name('Department.create');
+Route::post('/department', [departmentController::class, 'store'])->name('Department.store');
+// Ruta para actualizar datos
+Route::get('/department/{id}', [departmentController::class, 'edit'])->name('Department.edit');
+Route::put('/department/{id}', [departmentController::class, 'update'])->name('Department.update');
+// Ruta para eliminar datos
+Route::delete('/department/{id}', [departmentController::class, 'destroy'])->name('Department.destroy');
+
+//Registro de Fuente Financiera
+Route::get('/fuenteFinanciera', [afFuenteFinancieraController::class, 'index'])->name('FuenteFinanciera.index');
+Route::get('/fuenteFinanciera/create', [afFuenteFinancieraController::class, 'create'])->name('FuenteFinanciera.create');
+Route::post('/fuenteFinanciera', [afFuenteFinancieraController::class, 'store'])->name('FuenteFinanciera.store');
+// Ruta para actualizar datos
+Route::get('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'edit'])->name('FuenteFinanciera.edit');
+Route::put('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'update'])->name('FuenteFinanciera.update');
+// Ruta para eliminar datos
+Route::delete('/fuenteFinanciera/{id}', [afFuenteFinancieraController::class, 'destroy'])->name('FuenteFinanciera.destroy');
+
+//Registro de Vida Útil
+Route::get('/vidaUtil', [afDVidaUtilController::class, 'index'])->name('VidaUtil.index');
+Route::get('/vidaUtil/create', [afDVidaUtilController::class, 'create'])->name('VidaUtil.create');
+Route::post('/vidaUtil', [afDVidaUtilController::class, 'store'])->name('VidaUtil.store');
+// Ruta para actualizar datos
+Route::get('/vidaUtil/{id}', [afDVidaUtilController::class, 'edit'])->name('VidaUtil.edit');
+Route::put('/vidaUtil/{id}', [afDVidaUtilController::class, 'update'])->name('VidaUtil.update');
+// Ruta para eliminar datos
+Route::delete('/vidaUtil/{id}', [afDVidaUtilController::class, 'destroy'])->name('VidaUtil.destroy');
+
+//Registro de depreciación
+Route::get('/depreciacion', [afDepreciacionController::class, 'index'])->name('Depreciacion.index');
+Route::get('/depreciacion/create', [afDepreciacionController::class, 'create'])->name('Depreciacion.create');
+Route::post('/depreciacion', [afDepreciacionController::class, 'store'])->name('Depreciacion.store');
+// Ruta para actualizar datos
+Route::get('/depreciacion/{id}', [afDepreciacionController::class, 'edit'])->name('Depreciacion.edit');
+Route::put('/depreciacion/{id}', [afDepreciacionController::class, 'update'])->name('Depreciacion.update');
+// Ruta para eliminar datos
+Route::delete('/depreciacion/{id}', [afDepreciacionController::class, 'destroy'])->name('Depreciacion.destroy');
+
+//Registro de Bien Contable
+Route::get('/bienContable', [afTipoBienContableController::class, 'index'])->name('BienContable.index');
+Route::get('/bienContable/create', [afTipoBienContableController::class, 'create'])->name('BienContable.create');
+Route::post('/bienContable', [afTipoBienContableController::class, 'store'])->name('BienContable.store');
+// Ruta para actualizar datos
+Route::get('/bienContable/{id}', [afTipoBienContableController::class, 'edit'])->name('BienContable.edit');
+Route::put('/bienContable/{id}', [afTipoBienContableController::class, 'update'])->name('BienContable.update');
+// Ruta para eliminar datos
+Route::delete('/bienContable/{id}', [afTipoBienContableController::class, 'destroy'])->name('BienContable.destroy');
+
+//Registro de País
+Route::get('/country', [countryController::class, 'index'])->name('Country.index');
+Route::get('/country/create', [countryController::class, 'create'])->name('Country.create');
+Route::post('/country', [countryController::class, 'store'])->name('Country.store');
+// Ruta para actualizar datos
+Route::get('/country/{id}', [countryController::class, 'edit'])->name('Country.edit');
+Route::put('/country/{id}', [countryController::class, 'update'])->name('Country.update');
+// Ruta para eliminar datos
+Route::delete('/country/{id}', [countryController::class, 'destroy'])->name('Country.destroy');
+
+//Registro de País
+Route::get('/solicitud', [solicitudController::class, 'index'])->name('Solicitud.index');
+Route::get('/solicitud/create', [solicitudController::class, 'create'])->name('Solicitud.create');
+Route::post('/solicitud', [solicitudController::class, 'store'])->name('Solicitud.store');
+// Ruta para actualizar datos
+Route::get('/solicitud/{id}', [solicitudController::class, 'edit'])->name('Solicitud.edit');
+Route::put('/solicitud/{id}', [solicitudController::class, 'update'])->name('Solicitud.update');
+// Ruta para eliminar datos
+Route::delete('/solicitud/{id}', [solicitudController::class, 'destroy'])->name('Solicitud.destroy');
