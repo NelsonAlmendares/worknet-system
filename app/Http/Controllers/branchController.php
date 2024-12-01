@@ -11,8 +11,9 @@ class branchController extends Controller
     public function index()
     {
         $branches = branchModelo::all(); // Obtener todos los empleados
+        $companies = companyModelo::all();
         // dd($branches); // Ver los datos
-        return view('Branch.showBranch', compact('branches'));
+        return view('Branch.showBranch', compact('branches', 'companies'));
     }
 
     // Función para almacenar una nueva sucursal en la base de datos (Store)
@@ -22,9 +23,9 @@ class branchController extends Controller
         $request->validate([
             'brnname' => 'required|string|max:50',
             'brnborndate' => 'nullable|date',
-            'brnemail' => 'nullable|string|max:125',
+            'brnemail' => 'nullable|email',
             'brntel' => 'nullable|string|max:15',
-            'brn_compid' => 'nullable|integer',
+            'brn_compid' => 'required|exists:company,idcompany',
             'brn_e' => 'required|string|max:1',
         ]);
 
@@ -49,24 +50,23 @@ class branchController extends Controller
         $branch = branchModelo::findOrFail($id);
         // Obtener todas las compañías para la vista de edición
         $companies = companyModelo::all();
-        return view('Branches.updateBranch', compact('branch', 'companies'));
+        return view('Branch.updateBranch', compact('branch', 'companies'));
     }
 
     // Función para actualizar una sucursal (Update)
     public function update(Request $request, $idbranch)
     {
-        $request->validate([
+        $validated = $request->validate([
             'brnname' => 'required|string|max:50',
             'brnborndate' => 'nullable|date',
-            'brnemail' => 'nullable|string|max:25',
+            'brnemail' => 'nullable|email',
             'brntel' => 'nullable|string|max:15',
-            'brnlogo' => 'nullable|string|max:50',
-            'brn_compid' => 'nullable|integer',
-            'brn_e' => 'nullable|string|max:1',
+            'brn_compid' => 'required|exists:company,idcompany',
+            'brn_e' => 'required|string|max:1',
         ]);
 
         $branch = branchModelo::findOrFail($idbranch);
-        $branch->update($request->all());
+        $branch->update($validated);
 
         return redirect()->route('Branches.index')->with('success', 'Sucursal actualizada con éxito.');
     }
@@ -75,7 +75,8 @@ class branchController extends Controller
     public function destroy($id)
     {
         $branch = branchModelo::findOrFail($id);
-        $branch->delete();
+        $branch->brn_e = "E";
+        $branch->save();
 
         return redirect()->route('Branches.index')->with('success', 'Sucursal eliminada correctamente.');
     }

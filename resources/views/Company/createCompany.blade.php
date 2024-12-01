@@ -190,7 +190,7 @@
           </nav>
 
           <div class="p-4">
-            <h2>Adminisrtación de Empresas</h2>
+            <h2>Administración de Empresas</h2>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">

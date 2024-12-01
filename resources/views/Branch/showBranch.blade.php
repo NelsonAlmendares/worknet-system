@@ -235,25 +235,25 @@
           </nav>
 
           <div class="p-4">
-            <h2>Adminisrtación de Compañías</h2>
+            <h2>Administración de Sucursales</h2>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Compañías</li>
+                  <li class="breadcrumb-item active" aria-current="page">Sucursal</li>
                 </ol>
               </nav>
 
             <div class="mt-5">
                 <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Compañías</h3>
+                    <h3 class="text-center mb-3">Lista de Sucursales</h3>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Fecha de Creación</th>
-                                <th>Compañía ID</th>
+                                <th>Empresa</th>
                                 <th>Estado</th>
                                 <th>Email</th>
                                 <th>Teléfono</th>
@@ -265,9 +265,9 @@
                             <tr>
                                 <td>{{ $branch->idbranch }}</td>
                                 <td>{{ $branch->brnname }}</td>
-                                <td>{{ $branch->brnborndate }}</td>
-                                <td>{{ $branch->brn_compid }}</td>
-                                <td>{{ $branch->brn_e }}</td>
+                                <td>{{ $branch->fecha_formateada }}</td>
+                                <td>{{ $branch->company->compname }}</td>
+                                <td>{{ $branch->estado_descripcion }}</td>
                                 <td>{{ $branch->brnemail }}</td>
                                 <td>{{ $branch->brntel }}</td>
                                 <td>
@@ -289,11 +289,11 @@
             </div>
             <div class="add-center">
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar Compañías <i class='bx bx-user-pin custom-icon-size' ></i>
+                    Agregar Sucursal <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
                 <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
-                    Repores <i class='bx bxs-report custom-icon-size' ></i>
+                    Reportes <i class='bx bxs-report custom-icon-size' ></i>
                 </button>
             </div>
 
@@ -302,7 +302,7 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Compañías</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Sucursal</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -337,16 +337,37 @@
 
                                     <!-- ID de la Compañía -->
                                     <div class="mb-3">
-                                        <label for="brn_compid" class="form-label">ID de la Compañía</label>
-                                        <input type="number" class="form-control" name="brn_compid" id="brn_compid">
+                                        <label for="brn_compid" class="form-label">Compañía</label>
+                                        <select name="brn_compid" id="brn_compid" class="form-control" required>
+                                            <option value="">Elija la compañia</option>
+                                            @foreach ($companies as $comp)
+                                                <option value="{{ $comp->idcompany }}" {{ old('brn_compid') == $comp->idcompany ? 'selected' : '' }}>
+                                                    {{ $comp->compname }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
+                                    @php
+                                        $estados = [
+                                        'A' => 'Activo',
+                                        'S' => 'Suspendido',
+                                        'I' => 'Inactivo',
+                                        'R' => 'Retirado',
+                                        'E' => 'Eliminado',
+                                        'C' => 'Contingente',
+                                        ];
+                                    @endphp
 
                                     <!-- Estado -->
                                     <div class="mb-3">
                                         <label for="brn_e" class="form-label">Estado</label>
                                         <select name="brn_e" id="brn_e" class="form-control" required>
-                                            <option value="A">Activo</option>
-                                            <option value="I">Inactivo</option>
+                                            <option value="">Elija el Status</option>
+                                            @foreach ($estados as $key => $label)
+                                                <option value="{{ $key }}" {{ old('brn_e') == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
 
