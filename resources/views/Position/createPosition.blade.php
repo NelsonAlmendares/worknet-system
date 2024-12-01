@@ -189,7 +189,7 @@
           </nav>
 
           <div class="p-4">
-            <h2>Adminisrtación de Cargos</h2>
+            <h2>Administración de Cargos</h2>
 
             <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -210,10 +210,10 @@
                                 <th>ID</th>
                                 <th>Nombre</th>
                                 <th>Descripción</th>
-                                <th>Estado</th>
                                 <th>Requisitos</th>
                                 <th>Unidad</th>
                                 <th>Tipo de Puesto</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -223,10 +223,10 @@
                                     <td>{{ $position->idposition }}</td>
                                     <td>{{ $position->positname }}</td>
                                     <td>{{ $position->positdesc ?? 'No disponible' }}</td>
-                                    <td>{{ $position->positstate }}</td>
                                     <td>{{ $position->positrequest ?? 'No disponible' }}</td>
-                                    <td>{{ $position->posit_idunit }}</td>
-                                    <td>{{ $position->posit_idtypeposit }}</td>
+                                    <td>{{ $position->unitA->unitname }}</td>
+                                    <td>{{ $position->typePosition->typepositname ?? 'No disponible' }}</td>
+                                    <td>{{ $position->estado_descripcion }}</td>
                                     <td>
                                         <a href="{{ route('Cargos.edit', $position->idposition) }}" class="btn btn-warning btn-sm">Editar <i class='bx bxs-edit-alt' ></i></a>
 
@@ -271,17 +271,17 @@
                                 <form action="{{ route('Cargos.store') }}" method="POST">
                                     @csrf
                                     <div class="form-group mb-3">
-                                        <label for="positname">Nombre de la Posición:</label>
+                                        <label for="positname">Nombre:</label>
                                         <input type="text" name="positname" id="positname" class="form-control" required>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="positnameb">Descripción:</label>
+                                        <label for="positnameb">Nombre alterno:</label>
                                         <input type="text" name="positnameb" id="positnameb" class="form-control">
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="positdesc">positdesc:</label>
+                                        <label for="positdesc">Descripción:</label>
                                         <textarea name="positdesc" id="positdesc" class="form-control"></textarea>
                                     </div>
 
@@ -296,17 +296,28 @@
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="posit_idunit">ID de Unidad:</label>
-                                        <input type="number" name="posit_idunit" id="posit_idunit" class="form-control">
+                                        <label for="posit_idunit">Unidad A</label>
+                                        <select name="posit_idunit" id="posit_idunit" class="form-control">
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->idunit }}">
+                                                    {{ $unit->unitname }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="posit_idunitb">ID de Unidad B:</label>
-                                        <input type="number" name="posit_idunitb" id="posit_idunitb" class="form-control">
-                                    </div>
+                                        <label for="posit_idunitb">Unidad B</label>
+                                        <select name="posit_idunitb" id="posit_idunitb" class="form-control">
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->idunit }}">
+                                                    {{ $unit->unitname }}
+                                                </option>
+                                            @endforeach
+                                        </select>                                    </div>
 
                                     <div class="form-group mb-3">
-                                        <label for="posit_idtypeposit">Tipo de Posición:</label>
+                                        <label for="posit_idtypeposit">Tipo de Posición</label>
                                         <select name="posit_idtypeposit" id="posit_idtypeposit" class="form-control">
                                         
                                             @foreach ($typePositions as $typePosition)
@@ -314,10 +325,26 @@
                                             @endforeach
                                         </select>
                                     </div>
-
+                                    @php
+                                    $estados = [
+                                    'A' => 'Activo',
+                                    'S' => 'Suspendido',
+                                    'I' => 'Inactivo',
+                                    'R' => 'Retirado',
+                                    'E' => 'Eliminado',
+                                    'C' => 'Contingente',
+                                    ];
+                                    @endphp
                                     <div class="form-group mb-3">
-                                        <label for="posit_e">Estado de la Posición:</label>
-                                        <input type="text" name="posit_e" id="posit_e" class="form-control">
+                                        <label for="posit_e">Estado</label>
+                                        <select class="form-select" id="posit_e" name="posit_e" required>
+                                            <option value="">Elija el Status</option>
+                                            @foreach ($estados as $key => $label)
+                                                <option value="{{ $key }}" {{ old('posit_e') == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary mt-3">Registrar Posición</button>

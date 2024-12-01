@@ -73,7 +73,7 @@ Route::get('/cargosRegister/{id}', [positionController::class, 'edit'])->name('C
 Route::post('/cargosRegister', [positionController::class, 'store'])->name('Cargos.store');
 Route::put('/cargosRegister/{idposition}', [positionController::class, 'update'])->name('Cargos.update');
 // Ruta para eliminar datos
-Route::delete('cargosRegister/{idposition}', [positionController::class, 'destroy'])->name('Cargos.destroy');
+Route::delete('/cargosRegister/{id}', [positionController::class, 'destroy'])->name('Cargos.destroy');
 
 // REGISTRO DE USUARIOS
 Route::get('/afActivoRegister', [afActivoController::class, 'index'])->name('activos.index');

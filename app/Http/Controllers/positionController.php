@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\positionModelo;
 use App\Models\typePosition; // Para mostrar los tipos de posición en la vista
+use App\Models\unitModelo;
 
 class PositionController extends Controller
 {
@@ -13,9 +14,9 @@ class PositionController extends Controller
         // Obtener todas las posiciones y tipos de posición
         $positions = positionModelo::all();
         $typePositions = typePosition::all();  // Obtener todos los tipos de posición
-
+        $units = unitModelo::all();
         // Pasar ambas variables a la vista
-        return view('Position.createPosition', compact('positions', 'typePositions'));
+        return view('Position.createPosition', compact('positions', 'typePositions', 'units'));
     }
 
     // Función para llamar la vista de crear posición (Crear)
@@ -60,7 +61,8 @@ class PositionController extends Controller
     {
         $position = positionModelo::findOrFail($id);
         $typePositions = typePosition::all(); // Obtener todos los tipos de posición para mostrar en el formulario
-        return view('Position.updatePosition', compact('position', 'typePositions'));
+        $units = unitModelo::all();
+        return view('Position.updatePosition', compact('position', 'typePositions', 'units'));
     }
 
     // Función para actualizar una posición (Update)
@@ -88,7 +90,8 @@ class PositionController extends Controller
     public function destroy($id)
     {
         $position = positionModelo::findOrFail($id);
-        $position->delete();
+        $position->posit_e = "E";
+        $position->save();
 
         return redirect()->route('Cargos.index')->with('success', 'Posición eliminada correctamente.');
     }
