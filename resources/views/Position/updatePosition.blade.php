@@ -342,7 +342,7 @@
                         </div>
                         <div class="update-option">
                             <button type="submit" class="btn btn-primary espaciado">Actualizar Municipio (nuevo)</button>
-                            <a href="{{ route('MunicipNew.index') }}" class="btn btn-secondary espaciado">Cancelar</a>
+                            <a href="{{ route('MunicipNew.index') }}"  class="btn btn-secondary espaciado">Cancelar</a>
                         </div>
                     </form>
                 </div>
