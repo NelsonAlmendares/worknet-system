@@ -228,8 +228,8 @@
                                     <td>{{ $company->compsr }}</td>
                                     <td>{{ $company->compnit }}</td>
                                     <td>{{ $company->compnrc }}</td>
-                                    <td>{{ $company->compborndate }}</td>
-                                    <td>{{ $company->comp_e ?? 'No disponible' }}</td>
+                                    <td>{{ $company->fecha_formateada }}</td>
+                                    <td>{{ $company->estado_descripcion ?? 'No disponible' }}</td>
                                     <td>
                                         <a href="{{ route('Sucursal.edit', $company->idcompany) }}" class="btn btn-warning btn-sm">Editar</a>
 
@@ -295,7 +295,7 @@
                                     <!-- ID del Empleado -->
                                     <div class="mb-3">
                                         <label for="compnit" class="form-label">NIT</label>
-                                        <input type="number" class="form-control" name="compnit" id="compnit" required>
+                                        <input type="text" class="form-control" name="compnit" id="compnit" required>
                                     </div>
                                     <!-- Contraseña -->
                                     <div class="mb-3">
@@ -308,13 +308,26 @@
                                         <label for="compborndate" class="form-label">Nacimiento</label>
                                         <input type="date" class="form-control" name="compborndate" id="compborndate" required>
                                     </div>
-
+                                    @php
+                                    $estados = [
+                                    'A' => 'Activo',
+                                    'S' => 'Suspendido',
+                                    'I' => 'Inactivo',
+                                    'R' => 'Retirado',
+                                    'E' => 'Eliminado',
+                                    'C' => 'Contingente',
+                                    ];
+                                    @endphp
                                     <!-- Estado -->
                                     <div class="mb-3">
                                         <label for="comp_e" class="form-label">Estado</label>
                                         <select name="comp_e" id="comp_e" class="form-control" required>
-                                            <option value="A">Activo</option>
-                                            <option value="I">Inactivo</option>
+                                            <option value="">Elija el Status</option>
+                                            @foreach ($estados as $key => $label)
+                                                <option value="{{ $key }}" {{ old('comp_e') == $key ? 'selected' : '' }}>
+                                                    {{ $label }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
 

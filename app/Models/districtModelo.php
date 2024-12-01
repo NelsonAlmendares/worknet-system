@@ -21,7 +21,7 @@ class districtModelo extends Model
 
     public function municipNew()
     {
-        return $this->belongsTo(municipNewModelo::class, 'dist_idmunicipnew', 'idmunicipnew');
+        return $this->belongsTo(municipNewModel::class, 'dist_idmunicipnew', 'idmunicipnew');
     }
 
     public function getEstadoDescripcionAttribute()

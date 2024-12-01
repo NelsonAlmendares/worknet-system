@@ -38,14 +38,21 @@ class companyController extends Controller
         }
     }
 
-    public function edit(companyModelo $company)
+    /*public function edit(companyModelo $company)
     {
         return view('companies.edit', compact('company'));
+    }*/
+
+    public function edit($id)
+    {
+        $company = companyModelo::findOrFail($id);
+        return view('Company.updateCompany', compact('company'));
     }
 
-    public function update(Request $request, companyModelo $company)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $company = companyModelo::findOrFail($id);
+        $validated = $request->validate([
             'compname' => 'required|string|max:250',
             'compdesc' => 'required|string|max:500',
             'compsr' => 'required|string|max:45',
@@ -55,14 +62,15 @@ class companyController extends Controller
             'comp_e' => 'required|string|max:1',
         ]);
 
-        $company->update($request->all());
+        $company->update($validated);
         return redirect()->route('Sucursal.index')->with('success', 'Empresa actualizada con éxito.');
     }
 
     public function destroy($id)
     {
         $company = companyModelo::findOrFail($id);
-        $company->delete();
+        $company->comp_e = "E";
+        $company->save();
 
         return redirect()->route('Sucursal.index')->with('success', 'Empresa eliminada con éxito.');
     }
