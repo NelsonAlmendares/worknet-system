@@ -32,19 +32,23 @@
 
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-dashboard' ></i>
-                    Dashboard
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
+                        Dashboard
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -75,9 +79,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
+                <a href="#" class="submenu-item">Agregar</a>
             </div>
         </div>
 
@@ -94,9 +96,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -109,9 +110,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -124,9 +124,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
             </div>
         </div>
 
@@ -137,31 +136,39 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
-                </span>
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
             </div>
         </div>
-
+        <div class="list-menu-small">
+            <p class="text-small">Activos</p>
+        </div>
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse">
                 <a href="{{ route('activos.index') }}">
@@ -192,9 +199,78 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-warning rounded-pill">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">17</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>
