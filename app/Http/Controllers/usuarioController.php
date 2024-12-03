@@ -137,4 +137,13 @@ class usuarioController extends Controller
             'message' => 'Usuario o contraseña incorrectos'
         ], 401);
     }
+
+    public function logout()
+    {
+        Auth::logout(); // Cierra la sesión del usuario
+        request()->session()->invalidate(); // Invalida la sesión actual
+        request()->session()->regenerateToken(); // Regenera el token CSRF
+
+        return redirect('login'); // Redirige al formulario de inicio de sesión
+    }
 }

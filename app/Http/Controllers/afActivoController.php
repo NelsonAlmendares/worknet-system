@@ -55,30 +55,51 @@ class afActivoController extends Controller
 
         afActivoModelo::create($validated);
 
-        return redirect()->route('af_activo.index')->with('success', 'Activo creado correctamente');
+        return redirect()->route('activos.index')->with('success', 'Activo creado correctamente');
     }
 
     // Mostrar el formulario para editar un activo
     public function edit($id)
     {
         $activo = afActivoModelo::findOrFail($id);
-        return view('af_activo.edit', compact('activo'));
+        return view('afActivo.afActivoUpdate', compact('activo'));
     }
 
     // Actualizar un activo
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_activo)
     {
-        $validated = $request->validate([
-            'a_cod_activo_interno_ant' => 'nullable|string|max:45',
-            'a_codigo_activo' => 'required|string|max:45|unique:af_activo,a_codigo_activo,' . $id,
-            // Valida los demás campos...
+        $activo = afActivoModelo::findOrFail($id_activo);
+
+        $activo->update([
+            'a_cod_activo_interno_ant' => $request->a_cod_activo_interno_ant,
+            'a_codigo_activo' => $request->a_codigo_activo,
+            'a_id_tb_contable' => $request->a_id_tb_contable,
+            'a_id_f_financiera' => $request->a_id_f_financiera,
+            'a_responsable_id_emp' => $request->a_responsable_id_emp,
+            'a_nombre' => $request->a_nombre,
+            'a_desc' => $request->a_desc,
+            'a_tipo' => $request->a_tipo,
+            'a_color' => $request->a_color,
+            'a_marca' => $request->a_marca,
+            'a_modelo' => $request->a_modelo,
+            'a_n_serie' => $request->a_n_serie,
+            'a_valor_dolar' => $request->a_valor_dolar,
+            'a_valor_colon' => $request->a_valor_colon,
+            'a_fecha_ingreso' => $request->a_fecha_ingreso,
+            'a_fecha_compra' => $request->a_fecha_compra,
+            'a_fac_respaldo' => $request->a_fac_respaldo,
+            'a_acta_recepcion' => $request->a_acta_recepcion,
+            'a_ubicacion_desc' => $request->a_ubicacion_desc,
+            'a_ubicacion_nivel' => $request->a_ubicacion_nivel,
+            'a_uso_estado' => $request->a_uso_estado,
+            'a_estado' => $request->a_estado,
+            'a_e' => $request->a_e,
+            'a_vidautil' => $request->a_vidautil,
         ]);
 
-        $activo = afActivoModelo::findOrFail($id);
-        $activo->update($validated);
-
-        return redirect()->route('af_activo.index')->with('success', 'Activo actualizado correctamente');
+        return redirect()->route('activos.index')->with('success', 'Activo actualizado correctamente');
     }
+
 
     // Eliminar un activo
     public function destroy($id)
@@ -86,6 +107,6 @@ class afActivoController extends Controller
         $activo = afActivoModelo::findOrFail($id);
         $activo->delete();
 
-        return redirect()->route('af_activo.index')->with('success', 'Activo eliminado correctamente');
+        return redirect()->route('activos.index')->with('success', 'Activo eliminado correctamente');
     }
 }

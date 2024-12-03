@@ -31,10 +31,12 @@
 
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-dashboard' ></i>
-                    Dashboard
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
+                        Dashboard
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -93,7 +95,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Agregar departamento</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
                 <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
@@ -107,7 +109,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Agregar distritos</a>
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
                 <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
@@ -121,7 +123,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Agregar municipios</a>
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
             </div>
         </div>
 
@@ -204,24 +206,24 @@
                             <ol class="list-group list-group-flush list-group-numbered">
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Content for list item
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
                                   </div>
                                   <span class="badge bg-warning rounded-pill">24</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Content for list item
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Contacte con soporte tecnico
                                   </div>
                                   <span class="badge bg-primary rounded-pill">17</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
-                                    <div class="fw-bold">Subheading</div>
-                                    Content for list item
+                                    <div class="fw-bold">Alertas</div>
+                                    Contacte con soporte tecnico
                                   </div>
-                                  <span class="badge bg-success rounded-pill">4</span>
+                                  <span class="badge bg-danger rounded-pill">4</span>
                                 </li>
                               </ol>
                         </ul>
@@ -231,7 +233,7 @@
                     <div class="btn-group dropstart">
                         <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-secondary" href="#">Notificación 1</a></li>
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
                         </ul>
                     </div>
 
@@ -239,11 +241,35 @@
                     <div class="btn-group dropstart">
                         <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item text-danger" href="#">Cerrar Sesión <i class="bx bx-log-in topbar-icon text-danger"></i></a></li>
-                            <li><a class="dropdown-item text-secondary" href="#">Configuración <i class="bx bxs-face topbar-icon text-secondary"></i></a></li>
-                            <li><a class="dropdown-item text-secondary" href="#">Soporte <i class="bx bx-support topbar-icon text-info"></i></a></li>
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
+
                 </span>
               </div>
             </div>
