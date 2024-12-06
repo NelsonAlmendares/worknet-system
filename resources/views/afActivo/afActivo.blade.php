@@ -344,7 +344,7 @@
 
             <div class="add-center">
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar empleados <i class='bx bx-user-pin custom-icon-size' ></i>
+                    Agregar Activo <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
                 <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
@@ -354,10 +354,10 @@
 
             <!-- Modal para agregar datos -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Empleado</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Cuadro de activos</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -366,97 +366,104 @@
                             <form action="{{ route('activos.store') }}" method="POST">
                                 @csrf
 
-                                <div class="form-group mb-2">
-                                    <label for="a_cod_activo_interno_ant">Código Interno Anterior</label>
-                                    <input type="text" name="a_cod_activo_interno_ant" class="form-control" value="{{ old('a_cod_activo_interno_ant') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_codigo_activo">Código del Activo</label>
-                                    <input type="text" name="a_codigo_activo" class="form-control" value="{{ old('a_codigo_activo') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_id_tb_contable">Tipo Bien Contable</label>
-                                    <input type="number" name="a_id_tb_contable" class="form-control" value="{{ old('a_id_tb_contable') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_id_f_financiera">Fuente Financiera</label>
-                                    <input type="number" name="a_id_f_financiera" class="form-control" value="{{ old('a_id_f_financiera') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_responsable_id_emp">Responsable</label>
-                                    <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ old('a_responsable_id_emp') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_nombre">Nombre</label>
-                                    <input type="text" name="a_nombre" class="form-control" value="{{ old('a_nombre') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_desc">Descripción</label>
-                                    <textarea name="a_desc" class="form-control">{{ old('a_desc') }}</textarea>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_tipo">Tipo</label>
-                                    <input type="text" name="a_tipo" class="form-control" value="{{ old('a_tipo') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_color">Color</label>
-                                    <input type="text" name="a_color" class="form-control" value="{{ old('a_color') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_marca">Marca</label>
-                                    <input type="text" name="a_marca" class="form-control" value="{{ old('a_marca') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_modelo">Modelo</label>
-                                    <input type="text" name="a_modelo" class="form-control" value="{{ old('a_modelo') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_n_serie">Número de Serie</label>
-                                    <input type="text" name="a_n_serie" class="form-control" value="{{ old('a_n_serie') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_valor_dolar">Valor en Dólares</label>
-                                    <input type="number" step="0.01" name="a_valor_dolar" class="form-control" value="{{ old('a_valor_dolar') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_valor_colon">Valor en Colones</label>
-                                    <input type="number" step="0.01" name="a_valor_colon" class="form-control" value="{{ old('a_valor_colon') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_fecha_ingreso">Fecha de Ingreso</label>
-                                    <input type="date" name="a_fecha_ingreso" class="form-control" value="{{ old('a_fecha_ingreso') }}" required>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_fecha_compra">Fecha de Compra</label>
-                                    <input type="date" name="a_fecha_compra" class="form-control" value="{{ old('a_fecha_compra') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_fac_respaldo">Factura de Respaldo</label>
-                                    <input type="text" name="a_fac_respaldo" class="form-control" value="{{ old('a_fac_respaldo') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_acta_recepcion">Acta de Recepción</label>
-                                    <input type="text" name="a_acta_recepcion" class="form-control" value="{{ old('a_acta_recepcion') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_ubicacion_desc">Descripción de la Ubicación</label>
-                                    <textarea name="a_ubicacion_desc" class="form-control">{{ old('a_ubicacion_desc') }}</textarea>
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_ubicacion_nivel">Nivel de Ubicación</label>
-                                    <input type="text" name="a_ubicacion_nivel" class="form-control" value="{{ old('a_ubicacion_nivel') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_uso_estado">Estado de Uso</label>
-                                    <input type="text" name="a_uso_estado" class="form-control" value="{{ old('a_uso_estado') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_estado">Estado</label>
-                                    <input type="text" name="a_estado" class="form-control" value="{{ old('a_estado') }}">
-                                </div>
-                                <div class="form-group mb-2">
-                                    <label for="a_vidautil">Vida Útil</label>
-                                    <input type="number" name="a_vidautil" class="form-control" value="{{ old('a_vidautil') }}" required>
+                                <div class="row flex">
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-2">
+                                            <label for="a_cod_activo_interno_ant">Código Interno Anterior</label>
+                                        <input type="text" name="a_cod_activo_interno_ant" class="form-control" value="{{ old('a_cod_activo_interno_ant') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_codigo_activo">Código del Activo</label>
+                                            <input type="text" name="a_codigo_activo" class="form-control" value="{{ old('a_codigo_activo') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_id_tb_contable">Tipo Bien Contable</label>
+                                            <input type="number" name="a_id_tb_contable" class="form-control" value="{{ old('a_id_tb_contable') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_id_f_financiera">Fuente Financiera</label>
+                                            <input type="number" name="a_id_f_financiera" class="form-control" value="{{ old('a_id_f_financiera') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_responsable_id_emp">Responsable</label>
+                                            <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ old('a_responsable_id_emp') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_nombre">Nombre</label>
+                                            <input type="text" name="a_nombre" class="form-control" value="{{ old('a_nombre') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_desc">Descripción</label>
+                                            <textarea name="a_desc" class="form-control">{{ old('a_desc') }}</textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_tipo">Tipo</label>
+                                            <input type="text" name="a_tipo" class="form-control" value="{{ old('a_tipo') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_color">Color</label>
+                                            <input type="text" name="a_color" class="form-control" value="{{ old('a_color') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_marca">Marca</label>
+                                            <input type="text" name="a_marca" class="form-control" value="{{ old('a_marca') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_modelo">Modelo</label>
+                                            <input type="text" name="a_modelo" class="form-control" value="{{ old('a_modelo') }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group mb-2">
+                                            <label for="a_n_serie">Número de Serie</label>
+                                        <input type="text" name="a_n_serie" class="form-control" value="{{ old('a_n_serie') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_valor_dolar">Valor en Dólares</label>
+                                        <input type="number" step="0.01" name="a_valor_dolar" class="form-control" value="{{ old('a_valor_dolar') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_valor_colon">Valor en Colones</label>
+                                            <input type="number" step="0.01" name="a_valor_colon" class="form-control" value="{{ old('a_valor_colon') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fecha_ingreso">Fecha de Ingreso</label>
+                                            <input type="date" name="a_fecha_ingreso" class="form-control" value="{{ old('a_fecha_ingreso') }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fecha_compra">Fecha de Compra</label>
+                                            <input type="date" name="a_fecha_compra" class="form-control" value="{{ old('a_fecha_compra') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fac_respaldo">Factura de Respaldo</label>
+                                            <input type="text" name="a_fac_respaldo" class="form-control" value="{{ old('a_fac_respaldo') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_acta_recepcion">Acta de Recepción</label>
+                                            <input type="text" name="a_acta_recepcion" class="form-control" value="{{ old('a_acta_recepcion') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_ubicacion_desc">Descripción de la Ubicación</label>
+                                            <textarea name="a_ubicacion_desc" class="form-control">{{ old('a_ubicacion_desc') }}</textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_ubicacion_nivel">Nivel de Ubicación</label>
+                                            <input type="text" name="a_ubicacion_nivel" class="form-control" value="{{ old('a_ubicacion_nivel') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_uso_estado">Estado de Uso</label>
+                                            <input type="text" name="a_uso_estado" class="form-control" value="{{ old('a_uso_estado') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_estado">Estado</label>
+                                            <input type="text" name="a_estado" class="form-control" value="{{ old('a_estado') }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_vidautil">Vida Útil</label>
+                                            <input type="number" name="a_vidautil" class="form-control" value="{{ old('a_vidautil') }}" required>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary">Guardar Activo</button>

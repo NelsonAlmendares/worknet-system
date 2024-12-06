@@ -52,7 +52,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -130,7 +130,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
@@ -168,7 +168,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Activos</p>
+            <p class="text-small">ACTIVOS</p>
         </div>
 
         <div>
@@ -179,6 +179,23 @@
                         Activo Fijo
                     </span>
                 </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
+                <span class="font_custom-white">
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
+                </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Department.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
@@ -278,13 +295,14 @@
           </nav>
 
           <div class="p-4">
-            <h2>Main Content Area</h2>
-            <p>Your content goes here...</p>
+            <h2>Bienvenido de nuevo, todo esta listo para trabajar.</h2>
             <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                <strong>No hay actualizaciones detectadas!</strong> todo se encuentra en orden.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-
+            <div class="img-center">
+                <img src="https://www.conacyt.gob.sv/wp-content/themes/instituciones/img/Logo_Gobierno.svg" alt="">
+            </div>
           </div>
     </div>
 </div>
