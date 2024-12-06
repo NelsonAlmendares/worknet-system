@@ -79,7 +79,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">Agregar</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar rol</a>
             </div>
         </div>        
 
