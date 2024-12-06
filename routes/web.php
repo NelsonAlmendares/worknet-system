@@ -15,6 +15,7 @@ use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\municipController;
 use App\Http\Controllers\municipNewController;
 use App\Http\Controllers\positionController;
+use App\Http\Controllers\rolController;
 use App\Http\Controllers\solicitudController;
 use App\Http\Controllers\usuarioController;
 use App\Models\departmentModelo;
@@ -176,7 +177,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/country/{id}', [countryController::class, 'edit'])->name('Country.edit');
     Route::put('/country/{id}', [countryController::class, 'update'])->name('Country.update');
     // Ruta para eliminar datos
-    Route::delete('cargosRegister/{idposition}', [UsuarioController::class, 'destroy'])->name('Cargos.destroy');
+    Route::delete('country/{id}', [countryController::class, 'destroy'])->name('Country.destroy');
 
 
     //Registro de Municipios
@@ -278,4 +279,14 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/solicitud/{id}', [solicitudController::class, 'update'])->name('Solicitud.update');
     // Ruta para eliminar datos
     Route::delete('/solicitud/{id}', [solicitudController::class, 'destroy'])->name('Solicitud.destroy');
+
+    //Registro de Rol
+    Route::get('/rol', [rolController::class, 'index'])->name('Rol.index');
+    Route::get('/rol/create', [rolController::class, 'create'])->name('Rol.create');
+    Route::post('/rol', [rolController::class, 'store'])->name('Rol.store');
+    // Ruta para actualizar datos
+    Route::get('/rol/{id}', [rolController::class, 'edit'])->name('Rol.edit');
+    Route::put('/rol/{id}', [rolController::class, 'update'])->name('Rol.update');
+    // Ruta para eliminar datos
+    Route::delete('/rol/{id}', [rolController::class, 'destroy'])->name('Rol.destroy');
 });
