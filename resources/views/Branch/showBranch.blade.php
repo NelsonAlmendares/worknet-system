@@ -52,7 +52,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -83,7 +83,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -125,17 +125,18 @@
             <div class="collapse submenu" id="municip">
                 <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
                 <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+            <div class="menu-item" id="active" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -145,8 +146,8 @@
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -165,8 +166,9 @@
                 </a>
             </div>
         </div>
+
         <div class="list-menu-small">
-            <p class="text-small">Activos</p>
+            <p class="text-small">ACTIVOS</p>
         </div>
 
         <div>
@@ -177,6 +179,23 @@
                         Activo Fijo
                     </span>
                 </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
+                <span class="font_custom-white">
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
+                </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Department.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>

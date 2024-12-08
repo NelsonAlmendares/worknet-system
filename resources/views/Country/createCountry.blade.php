@@ -31,22 +31,27 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-dashboard' ></i>
-                    Dashboard
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
+                        Dashboard
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
+
 
         <div class="list-menu-small">
             <p class="text-small">Gestión</p>
@@ -96,7 +101,6 @@
             <div class="collapse submenu" id="department">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -111,7 +115,6 @@
             <div class="collapse submenu" id="district">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -126,7 +129,6 @@
             <div class="collapse submenu" id="municip">
                 <a href="#" class="submenu-item ">Analytics</a>
                 <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
             </div>
         </div>
 
@@ -136,29 +138,67 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="list-menu-small">
+            <p class="text-small">ACTIVOS</p>
+        </div>
+
+        <div>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('activos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
                 </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Department.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>

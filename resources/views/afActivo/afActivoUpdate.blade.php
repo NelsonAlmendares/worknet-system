@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
                 <a href="{{ route('welcome') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-dashboard' ></i>

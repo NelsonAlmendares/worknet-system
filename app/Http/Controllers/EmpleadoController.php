@@ -51,6 +51,10 @@ class EmpleadoController extends Controller
         }
     }
 
+    /* Para eliminar empleados no se necesita tener llaves foraneas, o eliminar directamente la dependencia
+        ALTER TABLE conacyt.employee ALTER CONSTRAINT employee_ibfk_1 ON UPDATE CASCADE ON DELETE CASCADE
+    */
+
     public function edit($id)
     {
         $empleado = EmpleadoModelo::findOrFail($id);
