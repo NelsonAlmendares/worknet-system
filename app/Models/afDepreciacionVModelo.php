@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class AfDepreciacionV
@@ -88,4 +89,59 @@ class afDepreciacionVModelo extends Model
 	{
 		return Carbon::parse($this->afd_fecha_corte)->format('d/m/Y');
 	}
+
+	public static function getDepreciacion()
+    {
+		return DB::table('af_depreciacion')
+        ->selectRaw("
+    SELECT
+    `worknet`.`af_depreciacion`.`afd_id` AS `afd_id`,
+    `worknet`.`af_depreciacion`.`afd_activo` AS `afd_activo`,
+    `worknet`.`af_depreciacion`.`afd_valor_depreciacion` AS `afd_valor_depreciacion`,
+    `worknet`.`af_depreciacion`.`afd_vida_util` AS `afd_vida_util`,
+    (
+        `worknet`.`af_depreciacion`.`afd_valor_depreciacion` - `worknet`.`af_depreciacion`.`afd_valor_depreciacion` * 0.10
+    ) /(
+    SELECT
+        `worknet`.`af_d_vida_util`.`plazo_vida_util_afd`
+    FROM
+        `worknet`.`af_d_vida_util`
+    WHERE
+        `worknet`.`af_d_vida_util`.`id_vida_util_afd` = `worknet`.`af_depreciacion`.`afd_vida_util`
+) AS `afd_cuota_anual`,
+(
+    `worknet`.`af_depreciacion`.`afd_valor_depreciacion` - `worknet`.`af_depreciacion`.`afd_valor_depreciacion` * 0.10
+) /(
+    SELECT
+        `worknet`.`af_d_vida_util`.`plazo_vida_util_afd`
+    FROM
+        `worknet`.`af_d_vida_util`
+    WHERE
+        `worknet`.`af_d_vida_util`.`id_vida_util_afd` = `worknet`.`af_depreciacion`.`afd_vida_util`
+) / 365 AS `afd_cuota_diaria`,
+`worknet`.`af_depreciacion`.`afd_fecha_generacion` AS `afd_fecha_generacion`,
+`worknet`.`af_depreciacion`.`afd_fecha_corte` AS `afd_fecha_corte`,
+`worknet`.`af_depreciacion`.`afd_codigo_informe` AS `afd_codigo_informe`,
+(
+    TO_DAYS(
+        `worknet`.`af_depreciacion`.`afd_fecha_corte`
+    ) - TO_DAYS(
+        `worknet`.`af_depreciacion`.`afd_fecha_generacion`
+    )
+) / 365 *(
+    `worknet`.`af_depreciacion`.`afd_valor_depreciacion` - `worknet`.`af_depreciacion`.`afd_valor_depreciacion` * 0.10
+) /(
+    SELECT
+        `worknet`.`af_d_vida_util`.`plazo_vida_util_afd`
+    FROM
+        `worknet`.`af_d_vida_util`
+    WHERE
+        `worknet`.`af_d_vida_util`.`id_vida_util_afd` = `worknet`.`af_depreciacion`.`afd_vida_util`
+) AS `afd_depreciacion_acumulada`,
+`worknet`.`af_depreciacion`.`afd_e` AS `afd_e`
+FROM
+    `worknet`.`af_depreciacion`
+        ")->get();
+
+    }
 }
