@@ -249,14 +249,6 @@
           <div class="p-4">
             <h2>Manejo de Países</h2>
 
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Países</li>
-                  <li class="breadcrumb-item active" aria-current="page">Actualización</li>
-                </ol>
-              </nav>
-
             <div class="mt-5">
                 <div class="card container p-3">
                     <h3 class="text-center mb-3">Actualizar País</h3>
@@ -273,16 +265,16 @@
                             <label for="contry_idmh" class="form-label">IDMH</label>
                             <input type="text" class="form-control" name="contry_idmh" id="contry_idmh" value="{{ $pais->contry_idmh }}" required>
                         </div>
-@php
-$estados = [
-'A' => 'Activo',
-'S' => 'Suspendido',
-'I' => 'Inactivo',
-'R' => 'Retirado',
-'E' => 'Eliminado',
-'C' => 'Contingente',
-];
-@endphp
+                            @php
+                            $estados = [
+                            'A' => 'Activo',
+                            'S' => 'Suspendido',
+                            'I' => 'Inactivo',
+                            'R' => 'Retirado',
+                            'E' => 'Eliminado',
+                            'C' => 'Contingente',
+                            ];
+                            @endphp
                         <div class="mb-3">
                             <label for="contry_e" class="form-label">Status</label>
                             <select class="form-select" id="contry_e" name="contry_e" required>

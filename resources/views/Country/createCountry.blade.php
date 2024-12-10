@@ -52,7 +52,6 @@
             </div>
         </div>
 
-
         <div class="list-menu-small">
             <p class="text-small">Gestión</p>
         </div>
@@ -80,9 +79,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar rol</a>
             </div>
         </div>
 
@@ -99,8 +96,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -113,8 +110,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
+                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -127,8 +124,8 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
             </div>
         </div>
 
@@ -138,8 +135,8 @@
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+            <div class="menu-item" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -150,7 +147,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -171,7 +168,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">ACTIVOS</p>
+            <p class="text-small">Activos</p>
         </div>
 
         <div>
@@ -182,23 +179,6 @@
                         Activo Fijo
                     </span>
                 </a>
-            </div>
-        </div>
-
-
-        <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#activo">
-                <span class="font_custom-white">
-                    <i class='bx bxs-briefcase-alt-2'></i>
-                    Manejo de activos
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="activo">
-                <a href="{{ route('Department.index') }}" class="submenu-item">Deprecacion</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Fuente Financiera</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Vida Util</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
@@ -223,9 +203,78 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-warning rounded-pill">24</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">17</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>
@@ -233,13 +282,6 @@
 
           <div class="p-4">
             <h2>Manejo de Países</h2>
-
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Países</li>
-                </ol>
-              </nav>
 
             <div class="mt-5">
                 <div class="card p-3">

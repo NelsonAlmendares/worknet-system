@@ -52,7 +52,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -78,12 +78,12 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">Agregar</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -96,7 +96,6 @@
             </div>
             <div class="collapse submenu" id="department">
                 <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
-                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -110,7 +109,6 @@
             </div>
             <div class="collapse submenu" id="district">
                 <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
-                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -125,17 +123,18 @@
             <div class="collapse submenu" id="municip">
                 <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
                 <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +145,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -165,8 +164,9 @@
                 </a>
             </div>
         </div>
+
         <div class="list-menu-small">
-            <p class="text-small">Activos</p>
+            <p class="text-small">ACTIVOS</p>
         </div>
 
         <div>
@@ -177,6 +177,23 @@
                         Activo Fijo
                     </span>
                 </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
+                <span class="font_custom-white">
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
+                </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
@@ -208,19 +225,19 @@
                                     <div class="fw-bold">Actualizaciones</div>
                                     Contacte con soporte tecnico
                                   </div>
-                                  <span class="badge bg-warning rounded-pill">24</span>
+                                  <span class="badge bg-success rounded-pill">0</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
                                     <div class="fw-bold">Nuevos grupos</div>
-                                    Contacte con soporte tecnico
+                                    Mantenrme informado de las nuevas actualizaciones
                                   </div>
-                                  <span class="badge bg-primary rounded-pill">17</span>
+                                  <span class="badge bg-primary rounded-pill">7</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
                                     <div class="fw-bold">Alertas</div>
-                                    Contacte con soporte tecnico
+                                    Administre las notificaciones segun el orden de llegada
                                   </div>
                                   <span class="badge bg-danger rounded-pill">4</span>
                                 </li>
@@ -242,9 +259,9 @@
                         <ul class="dropdown-menu">
                             <!-- Botón de Cerrar Sesión -->
                             <li>
-                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
+                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
                                         Cerrar Sesión 
                                         <i class="bx bx-log-in topbar-icon text-danger"></i>
                                     </button>
@@ -272,21 +289,14 @@
                 </span>
               </div>
             </div>
-          </nav>
+        </nav>
 
           <div class="p-4">
-            <h2>Administración de Cargos</h2>
-
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Cargos</li>
-                </ol>
-              </nav>
+            <h2 class="greet">Administración de Cargos</h2>
 
               <div class="mt-5">
-                <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Puestos</h3>
+                <div class="">
+                    <h3 class="text-center mb-3">Listado de Puestos registrados</h3>
                     @if($positions->isEmpty())
                         <p>No hay puestos registrados.</p>
                     @else
@@ -445,11 +455,19 @@
                     </div>
                 </div>
             </div>
-
-
           </div>
     </div>
 </div>
+<!-- Footer -->
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -532,6 +550,33 @@ document.querySelectorAll('.menu-item').forEach(item => {
         chevron.classList.toggle('rotate-icon');
     });
 });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoutButton = document.getElementById('logout-button');
+        const logoutForm = document.getElementById('logout-form');
+
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();  // Prevenir que el formulario se envíe inmediatamente
+
+            // Mostrar el Toast con la notificación
+            Swal.fire({
+                icon: 'success',
+                title: 'Cerrando sesion',
+                text: 'Espere mientras se limpian datos.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1700,  // Esperar 3 segundos
+                timerProgressBar: true,
+            });
+
+            // Retrasar el envío del formulario
+            setTimeout(() => {
+                logoutForm.submit();  // Enviar el formulario después de 3 segundos
+            }, 2000);  // Retraso de 3 segundos
+        });
+    });
 </script>
 
 </body>

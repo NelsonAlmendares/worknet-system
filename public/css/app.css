@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .main {
-    width: 100%;
+    margin-top: 60px; /* Altura del navbar */
+    flex: 1;
+    margin-bottom: 60px; /* Espacio para el footer */
+    overflow-y: auto;
 }
+
 .margin-top-icon {
     height: 100%;
 }
@@ -60,15 +66,10 @@
     width: 360px;
 }
 
-.footer {
-    position: sticky;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px 0;
+.greet {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .logo-img {
@@ -160,4 +161,41 @@ span > i {
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 280px; /* Alineación con el sidebar */
+    right: 0;
+    z-index: 1030; /* Asegura que esté sobre el contenido */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para separarla visualmente */
+}
+
+
+/* Estilo general del footer */
+.footer {
+    height: 60px;
+    line-height: 60px;
+    position: fixed;
+    bottom: 0;
+    left: 280px; /* Ancho del sidebar */
+    right: 0;
+    background-color: #f8f9fa; /* Color de fondo similar al navbar */
+    z-index: 1000; /* Asegura que esté encima del contenido */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+/* Texto y enlaces */
+.footer span {
+    font-size: 14px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }

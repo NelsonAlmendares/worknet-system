@@ -31,41 +31,41 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <a href="{{ route('welcome') }}" class="text-decoration-none font_custom-white">
-                        <i class='bx bxs-dashboard'></i>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
                         Dashboard
-                    </a>
-                </span>
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-bar-chart-alt-2' ></i>
-                    Administración
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#users">
                 <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
+                    <i class='bx bxs-user-rectangle margin-top-icon'></i>
                     Usuarios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="users">
-                <a href="#" class="submenu-item">User List</a>
-                <a href="#" class="submenu-item">Add User</a>
-                <a href="#" class="submenu-item">User Groups</a>
+                <a href="{{ route('Usuarios.index') }}" class="submenu-item">Agregar Usuario</a>
             </div>
         </div>
 
@@ -79,144 +79,122 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-folder' ></i>
-                    Modulos
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-file' ></i>
-                    Reportes
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-map' ></i>
-                    Países
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#department">
                 <span class="font_custom-white">
                     <i class='bx bx-map-alt' ></i>
                     Departamentos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="department">
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#district">
                 <span class="font_custom-white">
                     <i class='bx bxs-institution' ></i>
                     Distritos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="district">
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#municip">
                 <span class="font_custom-white">
                     <i class='bx bxs-school' ></i>
                     Municipios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="municip">
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
             </div>
         </div>
 
+        <div class="list-menu-small">
+            <p class="text-small">ACTIVOS</p>
+        </div>
+
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('activos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
                 </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
@@ -247,19 +225,11 @@
           </nav>
 
           <div class="p-4">
-            <h2>Manejo de Usuarios</h2>
-
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Usuarios</li>
-                  <li class="breadcrumb-item active" aria-current="page">Actualización</li>
-                </ol>
-              </nav>
+            <h2 class="greet">Manejo de Usuarios</h2>
 
             <div class="mt-5">
-                <div class="card container p-3">
-                    <h3 class="text-center mb-3">Actualizar Usuarios</h3>
+                <div class="container">
+                    <h3 class="text-center mb-3">Actualizar Usuario</h3>
                     <form action="{{ route('Usuarios.update', $user->iduser) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -294,8 +264,12 @@
 
                         <!-- Botones de Acción -->
                         <div class="update-option">
-                            <button type="submit" class="btn btn-primary espaciado">Actualizar Usuario</button>
-                            <a href="{{ route('Usuarios.index') }}" class="btn btn-secondary espaciado">Cancelar</a>
+                            <button type="submit" class="btn btn-success espaciado">
+                                Actualizar Usuario <i class='bx bxs-save' ></i>
+                            </button>
+                            <a href="{{ route('Usuarios.index') }}" class="btn btn-secondary espaciado">
+                                Cancelar <i class='bx bxs-message-alt-x' ></i>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -303,6 +277,16 @@
           </div>
     </div>
 </div>
+<!-- Footer -->
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

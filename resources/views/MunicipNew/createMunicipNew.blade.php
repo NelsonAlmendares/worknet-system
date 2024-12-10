@@ -79,7 +79,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">Agregar</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar rol</a>
             </div>
         </div>
 
@@ -282,13 +282,6 @@
           <div class="p-4">
             <h2>Manejo de Municipios (nuevo)</h2>
 
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Municipios (nuevo)</li>
-                </ol>
-              </nav>
-
             <div class="mt-5">
                 <div class="card p-3">
                     <h3 class="text-center mb-3">Lista de Municipios (nuevo)</h3>
@@ -380,16 +373,16 @@
                                             @endforeach
                                         </select>
                                     </div>
-@php
-    $estados = [
-            'A' => 'Activo',
-            'S' => 'Suspendido',
-            'I' => 'Inactivo',
-            'R' => 'Retirado',
-            'E' => 'Eliminado',
-            'C' => 'Contingente',
-        ];
-@endphp
+                                        @php
+                                            $estados = [
+                                                    'A' => 'Activo',
+                                                    'S' => 'Suspendido',
+                                                    'I' => 'Inactivo',
+                                                    'R' => 'Retirado',
+                                                    'E' => 'Eliminado',
+                                                    'C' => 'Contingente',
+                                                ];
+                                        @endphp
                                     <div class="mb-3">
                                         <label for="municipnew_e" class="form-label">Status</label>
                                         <select class="form-select" id="municipnew_e" name="municipnew_e" required>

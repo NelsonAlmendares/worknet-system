@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ADMINISTRACION</title>
+    <title>Empleados</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -51,8 +51,9 @@
                 </a>
             </div>
         </div>
+
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -78,14 +79,12 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -97,8 +96,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
             </div>
         </div>
 
@@ -111,8 +109,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
             </div>
         </div>
 
@@ -125,13 +122,14 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
@@ -185,7 +183,7 @@
 
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#activo">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
                     <i class='bx bxs-briefcase-alt-2'></i>
                     Manejo de activos
@@ -193,19 +191,15 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="activo">
-                <a href="{{ route('Department.index') }}" class="submenu-item">Deprecacion</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Fuente Financiera</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Vida Util</a>
-                <a href="{{ route('Department.index') }}" class="submenu-item">Tipo de bien contable</a>
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
 
-
-
-
     <!-- Main Content Area -->
-
     <div class="main">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
@@ -221,27 +215,89 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Mantenrme informado de las nuevas actualizaciones
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Administre las notificaciones segun el orden de llegada
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>
-          </nav>
+        </nav>
 
-          <div class="p-4">
-            <h2>Manejo de Empleados</h2>
+        <div class="p-4">
+            <h2 class="greet">Manejo de Empleados</h2>
 
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Empleados</li>
-                </ol>
-              </nav>
-
-            <div class="mt-5">
-                <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Empleados</h3>
+            <div class="mt-4">
+                <div class="">
+                    <h3 class="text-center mb-3">Listado de Empleados registrados</h3>
                     @if($empleados->isEmpty())
                         <p>No hay empleados registrados.</p>
                     @else
@@ -272,7 +328,10 @@
                                 <td>{{ $empleado->empfullname }}</td>
                                 <td>
 
-                                    <a href="{{ route('Empleados.edit', $empleado->idemployee) }}" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="{{ route('Empleados.edit', $empleado->idemployee) }}" class="btn btn-warning btn-sm">
+                                        Editar
+                                        <i class='bx bxs-edit-alt'></i>
+                                    </a>
 
                                     <form id="deleteForm-{{ $empleado->idemployee }}" action="{{ route('Empleados.destroy', $empleado->idemployee) }}" method="POST" style="display:inline;">
                                         @csrf
@@ -305,10 +364,10 @@
 
             <!-- Modal para agregar datos -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Empleado</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Adicion de Empleados</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -317,71 +376,81 @@
                                 <form action="{{ route('Empleados.store') }}" method="POST">
                                     @csrf
                                     <!-- Nombre y Apellido -->
-                                    <div class="mb-3">
-                                        <label for="empfname" class="form-label">Primer Nombre</label>
-                                        <input type="text" class="form-control" name="empfname" id="empfname" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empsname" class="form-label">Segundo Nombre</label>
-                                        <input type="text" class="form-control" name="empsname" id="empsname" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empfsurname" class="form-label">Primer Apellido</label>
-                                        <input type="text" class="form-control" name="empfsurname" id="empfsurname" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empssurname" class="form-label">Segundo Apellido</label>
-                                        <input type="text" class="form-control" name="empssurname" id="empssurname" required>
-                                    </div>
 
-                                    <!-- Identificación y Contacto -->
-                                    <div class="mb-3">
-                                        <label for="empdui" class="form-label">DUI</label>
-                                        <input type="text" class="form-control" name="empdui" id="empdui" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empnit" class="form-label">NIT</label>
-                                        <input type="text" class="form-control" name="empnit" id="empnit" required>
-                                    </div>
+                                    <div class="row d-flex">
+                                        <div class="col-md-6">
+                                            <div class="p-1">
+                                                <div class="mb-3">
+                                                <label for="empfname" class="form-label">Primer Nombre</label>
+                                                <input type="text" class="form-control" name="empfname" id="empfname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="empsname" class="form-label">Segundo Nombre</label>
+                                                <input type="text" class="form-control" name="empsname" id="empsname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="empfsurname" class="form-label">Primer Apellido</label>
+                                                <input type="text" class="form-control" name="empfsurname" id="empfsurname" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="empssurname" class="form-label">Segundo Apellido</label>
+                                                <input type="text" class="form-control" name="empssurname" id="empssurname" required>
+                                            </div>
 
-                                    <!-- Fecha de Nacimiento y Género -->
-                                    <div class="mb-3">
-                                        <label for="empborndate" class="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" name="empborndate" id="empborndate" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empbgender" class="form-label">Género</label>
-                                        <select class="form-control" name="empbgender" id="empbgender" required>
-                                            <option value="M">Masculino</option>
-                                            <option value="F">Femenino</option>
-                                        </select>
-                                    </div>
+                                            <!-- Identificación y Contacto -->
+                                            <div class="mb-3">
+                                                <label for="empdui" class="form-label">DUI</label>
+                                                <input type="text" class="form-control" name="empdui" id="empdui" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="empnit" class="form-label">NIT</label>
+                                                <input type="text" class="form-control" name="empnit" id="empnit" required>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="p-1">
+                                                <!-- Fecha de Nacimiento y Género -->
+                                                <div class="mb-3">
+                                                    <label for="empborndate" class="form-label">Fecha de Nacimiento</label>
+                                                    <input type="date" class="form-control" name="empborndate" id="empborndate" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="empbgender" class="form-label">Género</label>
+                                                    <select class="form-control" name="empbgender" id="empbgender" required>
+                                                        <option value="M">Masculino</option>
+                                                        <option value="F">Femenino</option>
+                                                    </select>
+                                                </div>
 
-                                    <!-- Nombre Completo y Estado -->
-                                    <div class="mb-3">
-                                        <label for="empfullname" class="form-label">Nombre Completo</label>
-                                        <input type="text" class="form-control" name="empfullname" id="empfullname" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="empfullnameb" class="form-label">Nombre Completo Alternativo</label>
-                                        <input type="text" class="form-control" name="empfullnameb" id="empfullnameb" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="emp_e" class="form-label">Estado del Empleado</label>
-                                        <select class="form-control" name="emp_e" id="emp_e" required>
-                                            <option value="A">Activo</option>
-                                            <option value="I">Inactivo</option>
-                                        </select>
-                                    </div>
+                                                <!-- Nombre Completo y Estado -->
+                                                <div class="mb-3">
+                                                    <label for="empfullname" class="form-label">Nombre Completo</label>
+                                                    <input type="text" class="form-control" name="empfullname" id="empfullname" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="empfullnameb" class="form-label">Nombre Completo Alternativo</label>
+                                                    <input type="text" class="form-control" name="empfullnameb" id="empfullnameb" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="emp_e" class="form-label">Estado del Empleado</label>
+                                                    <select class="form-control" name="emp_e" id="emp_e" required>
+                                                        <option value="A">Activo</option>
+                                                        <option value="I">Inactivo</option>
+                                                    </select>
+                                                </div>
 
-                                    <!-- Email (opcional) -->
-                                    <div class="mb-3">
-                                        <label for="empemail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" name="empemail" id="empemail">
+                                                <!-- Email (opcional) -->
+                                                <div class="mb-3">
+                                                    <label for="empemail" class="form-label">Email</label>
+                                                    <input type="email" class="form-control" name="empemail" id="empemail">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <button type="submit" class="btn btn-success fw-bold">
-                                        Enviar Empleado <i class='bx bx-user-plus custom-icon-size' ></i>
+                                        Agregar Empleado <i class='bx bx-user-plus custom-icon-size' ></i>
                                     </button>
                                 </form>
                             </div>
@@ -398,6 +467,16 @@
           </div>
     </div>
 </div>
+<!-- Footer -->
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
@@ -438,7 +517,7 @@
 
     function confirmDelete(employeeId) {
         Swal.fire({
-            title: '¿Estás seguro?',
+            title: '¿Está seguro?',
             text: "¡Esta acción no se puede deshacer!",
             icon: 'warning',
             showCancelButton: true,
@@ -472,6 +551,34 @@
             icon: "info"
         });
     }
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoutButton = document.getElementById('logout-button');
+        const logoutForm = document.getElementById('logout-form');
+
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();  // Prevenir que el formulario se envíe inmediatamente
+
+            // Mostrar el Toast con la notificación
+            Swal.fire({
+                icon: 'success',
+                title: 'Cerrando sesion',
+                text: 'Espere mientras se limpian datos.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1700,  // Esperar 3 segundos
+                timerProgressBar: true,
+            });
+
+            // Retrasar el envío del formulario
+            setTimeout(() => {
+                logoutForm.submit();  // Enviar el formulario después de 3 segundos
+            }, 2000);  // Retraso de 3 segundos
+        });
+    });
 </script>
 
 {{-- Funcion para las flechas del menu --}}

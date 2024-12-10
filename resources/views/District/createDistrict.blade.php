@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>ADMINISTRACION</title>
+    <title>DISTRITOS</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -16,7 +16,7 @@
 <body id="no-active-modal-before">
 
 <div class="d-flex">
-    <div class="sidebar">
+   <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
                 <span class="">
@@ -31,25 +31,29 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bxs-dashboard' ></i>
-                    Dashboard
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
+                        Dashboard
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -75,14 +79,12 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -94,14 +96,12 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="department">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#district">
+            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#district">
                 <span class="font_custom-white">
                     <i class='bx bxs-institution' ></i>
                     Distritos
@@ -109,9 +109,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="district">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
             </div>
         </div>
 
@@ -124,47 +122,82 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="municip">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class="list-menu-small">
+            <p class="text-small">ACTIVOS</p>
+        </div>
+
+        <div>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('activos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
                 </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
-
-
-
 
     <!-- Main Content Area -->
 
@@ -192,18 +225,11 @@
           </nav>
 
           <div class="p-4">
-            <h2>Manejo de Distritos</h2>
-
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Distritos</li>
-                </ol>
-              </nav>
+            <h2 class="greet">Manejo de Distritos</h2>
 
             <div class="mt-5">
-                <div class="card p-3">
-                    <h3 class="text-center mb-3">Lista de Distritos</h3>
+                <div class="">
+                    <h3 class="text-center mb-3">Listado de Distritos registrados</h3>
                     @if($districts->isEmpty())
                         <p>No hay distritos registrados.</p>
                     @else
@@ -228,7 +254,9 @@
                                 <td>{{ $district->estado_descripcion }}</td>
                                 <td>
 
-                                    <a href="{{ route('District.edit', $district->iddistrict) }}" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="{{ route('District.edit', $district->iddistrict) }}" class="btn btn-warning btn-sm">
+                                        Editar <i class='bx bxs-edit-alt' ></i>
+                                    </a>
 
                                     <form id="deleteForm-{{ $district->iddistrict }}" action="{{ route('District.destroy', $district->iddistrict) }}" method="POST" style="display:inline;">
                                         @csrf
@@ -292,16 +320,16 @@
                                             @endforeach
                                         </select>
                                     </div>
-@php
-    $estados = [
-            'A' => 'Activo',
-            'S' => 'Suspendido',
-            'I' => 'Inactivo',
-            'R' => 'Retirado',
-            'E' => 'Eliminado',
-            'C' => 'Contingente',
-        ];
-@endphp
+                                        @php
+                                            $estados = [
+                                                    'A' => 'Activo',
+                                                    'S' => 'Suspendido',
+                                                    'I' => 'Inactivo',
+                                                    'R' => 'Retirado',
+                                                    'E' => 'Eliminado',
+                                                    'C' => 'Contingente',
+                                                ];
+                                        @endphp
                                     <div class="mb-3">
                                         <label for="dist_e" class="form-label">Status</label>
                                         <select class="form-select" id="dist_e" name="dist_e" required>
@@ -332,7 +360,16 @@
           </div>
     </div>
 </div>
-
+<!-- Footer -->
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 
@@ -414,6 +451,33 @@
         item.addEventListener('click', function() {
             const chevron = this.querySelector('.fa-chevron-down');
             chevron.classList.toggle('rotate-icon');
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoutButton = document.getElementById('logout-button');
+        const logoutForm = document.getElementById('logout-form');
+
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();  // Prevenir que el formulario se envíe inmediatamente
+
+            // Mostrar el Toast con la notificación
+            Swal.fire({
+                icon: 'success',
+                title: 'Cerrando sesion',
+                text: 'Espere mientras se limpian datos.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1700,  // Esperar 3 segundos
+                timerProgressBar: true,
+            });
+
+            // Retrasar el envío del formulario
+            setTimeout(() => {
+                logoutForm.submit();  // Enviar el formulario después de 3 segundos
+            }, 2000);  // Retraso de 3 segundos
         });
     });
 </script>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="author" content="Kodinger">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>My Login Page</title>
+    <title>ACESO RESTRINGIDO</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
@@ -34,11 +34,12 @@
                                         Contraseña es requerida.
                                     </div>
                                 </div>
-
-                                <div class="form-check mb-3">
-                                    <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                                    <label for="remember" class="form-check-label">Remember Me</label>
-                                </div>
+                                {{-- 
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                                        <label for="remember" class="form-check-label">Remember Me</label> 
+                                    </div>        
+                                --}}
 
                                 <button type="submit" class="btn btn-primary w-100">Login</button>
                             </form>

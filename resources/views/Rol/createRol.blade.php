@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>DEPRECACION</title>
+    <title>ADMINISTRACION</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -16,6 +16,7 @@
 <body id="no-active-modal-before">
 
 <div class="d-flex">
+
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
@@ -71,7 +72,7 @@
 
         <!-- Third Menu Item -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#settings">
+            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#settings">
                 <span class="font_custom-white">
                     <i class='bx bxs-cog' ></i>
                     Roles
@@ -183,7 +184,7 @@
 
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#activo">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
                     <i class='bx bxs-briefcase-alt-2'></i>
                     Manejo de activos
@@ -199,6 +200,7 @@
         </div>
     </div>
 
+    
     <!-- Main Content Area -->
 
     <div class="main">
@@ -227,19 +229,19 @@
                                     <div class="fw-bold">Actualizaciones</div>
                                     Contacte con soporte tecnico
                                   </div>
-                                  <span class="badge bg-success rounded-pill">0</span>
+                                  <span class="badge bg-warning rounded-pill">24</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
                                     <div class="fw-bold">Nuevos grupos</div>
-                                    Mantenrme informado de las nuevas actualizaciones
+                                    Contacte con soporte tecnico
                                   </div>
-                                  <span class="badge bg-primary rounded-pill">7</span>
+                                  <span class="badge bg-primary rounded-pill">17</span>
                                 </li>
                                 <li class="list-group-item d-flex justify-content-between align-items-start">
                                   <div class="ms-2 me-auto">
                                     <div class="fw-bold">Alertas</div>
-                                    Administre las notificaciones segun el orden de llegada
+                                    Contacte con soporte tecnico
                                   </div>
                                   <span class="badge bg-danger rounded-pill">4</span>
                                 </li>
@@ -261,9 +263,9 @@
                         <ul class="dropdown-menu">
                             <!-- Botón de Cerrar Sesión -->
                             <li>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                <form action="{{ route('logout') }}" method="POST" class="d-inline">
                                     @csrf
-                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
+                                    <button type="submit" class="dropdown-item text-danger">
                                         Cerrar Sesión 
                                         <i class="bx bx-log-in topbar-icon text-danger"></i>
                                     </button>
@@ -291,61 +293,42 @@
                 </span>
               </div>
             </div>
-        </nav>
+          </nav>
 
           <div class="p-4">
-            <h2 class="greet">Manejo de Depreciaciones</h2>
-            @php
-            use Carbon\Carbon;
-        @endphp
+            <h2 class="greet">Manejo de Roles</h2>
 
             <div class="mt-5">
                 <div class="">
-                    <h3 class="text-center mb-3">Lista de Depreciaciones</h3>
-                    @if($depreciaciones->isEmpty())
-                        <p>Aún no hay registros de depreciaciones.</p>
+                    <h3 class="text-center mb-3">Listado de Roles registrados</h3>
+                    @if($roles->isEmpty())
+                        <p>Aún no hay registros de roles.</p>
                     @else
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="text-center">
                             <th>ID</th>
-                            <th>Activo</th>
-                            <th>Valor del bien ($)</th>
-                            <th>Valor residual ($)</th>
-                            <th>Valor a depreciar ($)</th>
-                            <th>Vida útil</th>
-                            <th>Cuota anual ($)</th>
-                            <th>Cuota diaria ($)</th>
-                            <th>Fecha de generación</th>
-                            <th>Fecha de corte</th>
-                            <th>Código de informe</th>
-                            <th>Depreciación acumulada</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($depreciaciones as $depreciacion)
+                        @foreach ($roles as $rol)
                             <tr class="text-center">
-                                <td>{{ $depreciacion->afd_id }}</td>
-                                <td>{{ $depreciacion->af_activo->a_nombre }}</td>
-                                <td>{{ number_format($depreciacion->afd_valor_depreciacion, 2) }}</td>
-                                <td>{{ number_format(($depreciacion->afd_valor_depreciacion*0.10), 2) }}</td>
-                                <td>{{ number_format(($depreciacion->afd_valor_depreciacion-($depreciacion->afd_valor_depreciacion*0.10)), 2) }}</td>
-                                <td>{{ $depreciacion->vida_util->tipo_vida_util_afd }} ({{ $depreciacion->vida_util->plazo_vida_util_afd }} años)</td>
-                                <td>{{ number_format($depreciacion->afd_cuota_anual, 2) }}</td>
-                                <td>{{ number_format($depreciacion->afd_cuota_diaria, 2) }}</td>
-                                <td>{{ $depreciacion->fecha_formateada  }}</td>
-                                <td>{{$depreciacion->fecha_formateada2  }}</td>
-                                <td>{{ $depreciacion->afd_codigo_informe }}</td>
-                                <td>{{ number_format($depreciacion->afd_depreciacion_acumulada, 2) }}</td>
-                                <td>{{ $depreciacion->estado_descripcion }}</td>
+                                <td>{{ $rol->idrol }}</td>
+                                <td>{{ $rol->rolname }}</td>
+                                <td>{{ $rol->roldesc }}</td>
+                                <td>{{ $rol->estado_descripcion }}</td>
                                 <td>
-                                    <a href="{{ route('Depreciacion.edit', $depreciacion->afd_id) }}" class="btn btn-warning btn-sm">Editar</a>
-                                    <form id="deleteForm-{{ $depreciacion->afd_id }}" action="{{ route('Depreciacion.destroy', $depreciacion->afd_id) }}" method="POST" style="display:inline;">
+
+                                    <a href="{{ route('Rol.edit', $rol->idrol) }}" class="btn btn-warning btn-sm">Editar</a>
+
+                                    <form id="deleteForm-{{ $rol->idrol }}" action="{{ route('Rol.destroy', $rol->idrol) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $depreciacion->afd_id }})">
+                                        <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $rol->idrol }})">
                                             Eliminar <i class='bx bxs-trash custom-icon-size'></i>
                                         </button>
                                     </form>
@@ -363,7 +346,7 @@
 
             <div class="add-center">
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar Depreciación <i class='bx bx-user-pin custom-icon-size' ></i>
+                    Agregar Rol <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
                 <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
@@ -376,77 +359,46 @@
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Depreciación</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Rol</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="card-body">
 
-                                <form action="{{ route('Depreciacion.store') }}" method="POST">
+                                <form action="{{ route('Rol.store') }}" method="POST">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="afd_activo" class="form-label">Activo fijo</label>
-                                        <select class="form-select" id="afd_activo" name="afd_activo" required>
-                                            <option value="">Seleccione un activo fijo</option>
-                                            @foreach ($activos as $activo)
-                                                <option value="{{ $activo->id_activo }}" {{ old('afd_activo') == $activo->id_activo ? 'selected' : '' }}>
-                                                    {{ $activo->a_nombre }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <label for="rolname" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" name="rolname" id="rolname" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="afd_valor_depreciacion" class="form-label">Valor de depreciación</label>
-                                        <input type="number" class="form-control" name="afd_valor_depreciacion" id="afd_valor_depreciacion" step="0.01" 
-                                        min="0"  required>
+                                        <label for="roldesc" class="form-label">Descripción</label>
+                                        <input type="text" class="form-control" name="roldesc" id="roldesc" required>
                                     </div>
+@php
+    $estados = [
+            'A' => 'Activo',
+            'S' => 'Suspendido',
+            'I' => 'Inactivo',
+            'R' => 'Retirado',
+            'E' => 'Eliminado',
+            'C' => 'Contingente',
+        ];
+@endphp
                                     <div class="mb-3">
-                                        <label for="afd_vida_util" class="form-label">Vida útil</label>
-                                        <select class="form-select" id="afd_vida_util" name="afd_vida_util" required>
-                                            <option value="">Seleccione un tipo de vida útil</option>
-                                            @foreach ($vidas as $vida)
-                                                <option value="{{ $vida->id_vida_util_afd }}" {{ old('afd_vida_util') == $vida->id_vida_util_afd ? 'selected' : '' }}>
-                                                    {{ $vida->tipo_vida_util_afd }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="afd_fecha_generacion" class="form-label">Fecha de generación</label>
-                                        <input type="date" class="form-control" name="afd_fecha_generacion" id="afd_fecha_generacion" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="afd_fecha_corte" class="form-label">Fecha de corte</label>
-                                        <input type="date" class="form-control" name="afd_fecha_corte" id="afd_fecha_corte" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="afd_codigo_informe" class="form-label">Código de informe</label>
-                                        <input type="text" class="form-control" name="afd_codigo_informe" id="afd_codigo_informe" required>
-                                    </div>
-                                    @php
-                                        $estados = [
-                                                'A' => 'Activo',
-                                                'S' => 'Suspendido',
-                                                'I' => 'Inactivo',
-                                                'R' => 'Retirado',
-                                                'E' => 'Eliminado',
-                                                'C' => 'Contingente',
-                                            ];
-                                    @endphp
-                                    <div class="mb-3">
-                                        <label for="afd_e" class="form-label">Status</label>
-                                        <select class="form-select" id="afd_e" name="afd_e" required>
+                                        <label for="rol_e" class="form-label">Status</label>
+                                        <select class="form-select" id="rol_e" name="rol_e" required>
                                             <option value="">Elija el Status</option>
                                             @foreach ($estados as $key => $label)
-                                                <option value="{{ $key }}" {{ old('afd_e') == $key ? 'selected' : '' }}>
+                                                <option value="{{ $key }}" {{ old('rol_e') == $key ? 'selected' : '' }}>
                                                     {{ $label }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    
+
                                     <button type="submit" class="btn btn-success fw-bold">
-                                        Enviar Depreciación <i class='bx bx-user-plus custom-icon-size' ></i>
+                                        Enviar Rol <i class='bx bx-user-plus custom-icon-size' ></i>
                                     </button>
                                 </form>
                             </div>
@@ -463,7 +415,6 @@
           </div>
     </div>
 </div>
-<!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
@@ -555,33 +506,6 @@
         item.addEventListener('click', function() {
             const chevron = this.querySelector('.fa-chevron-down');
             chevron.classList.toggle('rotate-icon');
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const logoutButton = document.getElementById('logout-button');
-        const logoutForm = document.getElementById('logout-form');
-
-        logoutButton.addEventListener('click', function (event) {
-            event.preventDefault();  // Prevenir que el formulario se envíe inmediatamente
-
-            // Mostrar el Toast con la notificación
-            Swal.fire({
-                icon: 'success',
-                title: 'Cerrando sesion',
-                text: 'Espere mientras se limpian datos.',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1700,  // Esperar 3 segundos
-                timerProgressBar: true,
-            });
-
-            // Retrasar el envío del formulario
-            setTimeout(() => {
-                logoutForm.submit();  // Enviar el formulario después de 3 segundos
-            }, 2000);  // Retraso de 3 segundos
         });
     });
 </script>

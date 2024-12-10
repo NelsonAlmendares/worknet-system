@@ -31,7 +31,7 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
                 <a href="{{ route('welcome') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-dashboard' ></i>
@@ -79,7 +79,7 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">Agregar</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar rol</a>
             </div>
         </div>
 
@@ -277,115 +277,122 @@
           </nav>
 
         <div class="p-4">
-            <h2>Activos</h2>
+            <h2 class="greet">Actualizar activos</h2>
 
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Activos</li>
-                </ol>
-            </nav>
-
-            <div class="mt-5">
-                <div class="card container p-3">
+            <div class="mt-4">
+                <div class="container">
                     <div class="text-center p-3">
                         <form action="{{ route('activos.update', $activo->id_activo) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <div class="form-group mb-2">
-                                <label for="a_cod_activo_interno_ant">Código Interno Anterior</label>
-                                <input type="text" name="a_cod_activo_interno_ant" class="form-control" value="{{ $activo->a_cod_activo_interno_ant }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_codigo_activo">Código del Activo</label>
-                                <input type="text" name="a_codigo_activo" class="form-control" value="{{ $activo->a_codigo_activo }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_id_tb_contable">Tipo Bien Contable</label>
-                                <input type="number" name="a_id_tb_contable" class="form-control" value="{{ $activo->a_id_tb_contable }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_id_f_financiera">Fuente Financiera</label>
-                                <input type="number" name="a_id_f_financiera" class="form-control" value="{{ $activo->a_id_f_financiera }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_responsable_id_emp">Responsable</label>
-                                <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ $activo->a_responsable_id_emp }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_nombre">Nombre</label>
-                                <input type="text" name="a_nombre" class="form-control" value="{{ $activo->a_nombre }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_desc">Descripción</label>
-                                <textarea name="a_desc" class="form-control">{{ $activo->a_desc }}</textarea>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_tipo">Tipo</label>
-                                <input type="text" name="a_tipo" class="form-control" value="{{ $activo->a_tipo }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_color">Color</label>
-                                <input type="text" name="a_color" class="form-control" value="{{ $activo->a_color }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_marca">Marca</label>
-                                <input type="text" name="a_marca" class="form-control" value="{{ $activo->a_marca }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_modelo">Modelo</label>
-                                <input type="text" name="a_modelo" class="form-control" value="{{ $activo->a_modelo }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_n_serie">Número de Serie</label>
-                                <input type="text" name="a_n_serie" class="form-control" value="{{ $activo->a_n_serie }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_valor_dolar">Valor en Dólares</label>
-                                <input type="number" step="0.01" name="a_valor_dolar" class="form-control" value="{{ $activo->a_valor_dolar }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_valor_colon">Valor en Colones</label>
-                                <input type="number" step="0.01" name="a_valor_colon" class="form-control" value="{{ $activo->a_valor_colon }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_fecha_ingreso">Fecha de Ingreso</label>
-                                <input type="date" name="a_fecha_ingreso" class="form-control" value="{{ $activo->a_fecha_ingreso }}" required>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_fecha_compra">Fecha de Compra</label>
-                                <input type="date" name="a_fecha_compra" class="form-control" value="{{ $activo->a_fecha_compra }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_fac_respaldo">Factura de Respaldo</label>
-                                <input type="text" name="a_fac_respaldo" class="form-control" value="{{ $activo->a_fac_respaldo }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_acta_recepcion">Acta de Recepción</label>
-                                <input type="text" name="a_acta_recepcion" class="form-control" value="{{ $activo->a_acta_recepcion }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_ubicacion_desc">Descripción de la Ubicación</label>
-                                <textarea name="a_ubicacion_desc" class="form-control">{{ $activo->a_ubicacion_desc }}</textarea>
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_ubicacion_nivel">Nivel de Ubicación</label>
-                                <input type="text" name="a_ubicacion_nivel" class="form-control" value="{{ $activo->a_ubicacion_nivel }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_uso_estado">Estado de Uso</label>
-                                <input type="text" name="a_uso_estado" class="form-control" value="{{ $activo->a_uso_estado }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_estado">Estado</label>
-                                <input type="text" name="a_estado" class="form-control" value="{{ $activo->a_estado }}">
-                            </div>
-                            <div class="form-group mb-2">
-                                <label for="a_vidautil">Vida Útil</label>
-                                <input type="number" name="a_vidautil" class="form-control" value="{{ $activo->a_vidautil }}" required>
+
+                            <div class="row d-flex">
+                                <div class="col-md-6">
+                                    <div class="p-1">
+                                        <div class="form-group mb-2">
+                                            <label for="a_cod_activo_interno_ant">Código Interno Anterior</label>
+                                            <input type="text" name="a_cod_activo_interno_ant" class="form-control" value="{{ $activo->a_cod_activo_interno_ant }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_codigo_activo">Código del Activo</label>
+                                            <input type="text" name="a_codigo_activo" class="form-control" value="{{ $activo->a_codigo_activo }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_id_tb_contable">Tipo Bien Contable</label>
+                                            <input type="number" name="a_id_tb_contable" class="form-control" value="{{ $activo->a_id_tb_contable }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_id_f_financiera">Fuente Financiera</label>
+                                            <input type="number" name="a_id_f_financiera" class="form-control" value="{{ $activo->a_id_f_financiera }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_responsable_id_emp">Responsable</label>
+                                            <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ $activo->a_responsable_id_emp }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_nombre">Nombre</label>
+                                            <input type="text" name="a_nombre" class="form-control" value="{{ $activo->a_nombre }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_desc">Descripción</label>
+                                            <textarea name="a_desc" class="form-control">{{ $activo->a_desc }}</textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_tipo">Tipo</label>
+                                            <input type="text" name="a_tipo" class="form-control" value="{{ $activo->a_tipo }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_color">Color</label>
+                                            <input type="text" name="a_color" class="form-control" value="{{ $activo->a_color }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_marca">Marca</label>
+                                            <input type="text" name="a_marca" class="form-control" value="{{ $activo->a_marca }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_modelo">Modelo</label>
+                                            <input type="text" name="a_modelo" class="form-control" value="{{ $activo->a_modelo }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-1">
+                                        <div class="form-group mb-2">
+                                            <label for="a_n_serie">Número de Serie</label>
+                                            <input type="text" name="a_n_serie" class="form-control" value="{{ $activo->a_n_serie }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_valor_dolar">Valor en Dólares</label>
+                                            <input type="number" step="0.01" name="a_valor_dolar" class="form-control" value="{{ $activo->a_valor_dolar }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_valor_colon">Valor en Colones</label>
+                                            <input type="number" step="0.01" name="a_valor_colon" class="form-control" value="{{ $activo->a_valor_colon }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fecha_ingreso">Fecha de Ingreso</label>
+                                            <input type="date" name="a_fecha_ingreso" class="form-control" value="{{ $activo->a_fecha_ingreso }}" required>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fecha_compra">Fecha de Compra</label>
+                                            <input type="date" name="a_fecha_compra" class="form-control" value="{{ $activo->a_fecha_compra }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_fac_respaldo">Factura de Respaldo</label>
+                                            <input type="text" name="a_fac_respaldo" class="form-control" value="{{ $activo->a_fac_respaldo }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_acta_recepcion">Acta de Recepción</label>
+                                            <input type="text" name="a_acta_recepcion" class="form-control" value="{{ $activo->a_acta_recepcion }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_ubicacion_desc">Descripción de la Ubicación</label>
+                                            <textarea name="a_ubicacion_desc" class="form-control">{{ $activo->a_ubicacion_desc }}</textarea>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_ubicacion_nivel">Nivel de Ubicación</label>
+                                            <input type="text" name="a_ubicacion_nivel" class="form-control" value="{{ $activo->a_ubicacion_nivel }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_uso_estado">Estado de Uso</label>
+                                            <input type="text" name="a_uso_estado" class="form-control" value="{{ $activo->a_uso_estado }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_estado">Estado</label>
+                                            <input type="text" name="a_estado" class="form-control" value="{{ $activo->a_estado }}">
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="a_vidautil">Vida Útil</label>
+                                            <input type="number" name="a_vidautil" class="form-control" value="{{ $activo->a_vidautil }}" required>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Guardar Activo</button>
+                            <div class="update-option">
+                                <button type="submit" class="btn btn-success espaciado">Guardar Activo <i class='bx bx-save' ></i></button>
+                                <a href="{{ route('activos.index') }}" class="btn btn-secondary espaciado">Cancelar <i class='bx bxs-message-alt-x' ></i></a>
+                            </div>
                         </form>
 
                     </div>
