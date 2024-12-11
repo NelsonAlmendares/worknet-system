@@ -2,21 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\af_tipo_bien_contable;
 use Illuminate\Http\Request;
 use App\Models\afActivoModelo;
+use App\Models\afDVidaUtilModelo;
+use App\Models\afFuenteFinancieraModelo;
+use App\Models\EmpleadoModelo;
 
 class afActivoController extends Controller
 {
     public function index()
     {
         $activos = afActivoModelo::all();
-        return view('afActivo.afActivo', compact('activos'));
+        $bienes = af_tipo_bien_contable::all();
+        $fuentes = afFuenteFinancieraModelo::all();
+        $empleados = EmpleadoModelo::all();
+        $vidas = afDVidaUtilModelo::all();
+        return view('afActivo.afActivo', compact('activos', 'bienes', 'fuentes', 'empleados', 'vidas'));
     }
 
     // Mostrar el formulario para crear un nuevo activo
     public function create()
     {
-        return view('af_activo.create');
+        $activos = afActivoModelo::all();
+        $bienes = af_tipo_bien_contable::all();
+        $fuentes = afFuenteFinancieraModelo::all();
+        $empleados = EmpleadoModelo::all();
+        $vidas = afDVidaUtilModelo::all();
+        return view('afActivo.afActivo', compact('activos', 'bienes', 'fuentes', 'empleados', 'vidas'));
     }
     /*
         INSERT INTO af_activo (a_cod_activo_interno_ant, a_codigo_activo, a_id_tb_contable, a_id_f_financiera, a_responsable_id_emp, a_nombre, a_desc, a_tipo, a_color, a_marca, a_modelo, a_n_serie, a_valor_dolar, a_valor_colon, a_fecha_ingreso, a_fecha_compra, a_fac_respaldo, a_acta_recepcion, a_ubicacion_desc, a_ubicacion_nivel, a_uso_estado, a_estado, a_e, a_vidautil) 
@@ -53,6 +66,7 @@ class afActivoController extends Controller
             'a_vidautil' => 'required|integer',
         ]);
 
+
         afActivoModelo::create($validated);
 
         return redirect()->route('activos.index')->with('success', 'Activo creado correctamente');
@@ -62,7 +76,11 @@ class afActivoController extends Controller
     public function edit($id)
     {
         $activo = afActivoModelo::findOrFail($id);
-        return view('afActivo.afActivoUpdate', compact('activo'));
+        $bienes = af_tipo_bien_contable::all();
+        $fuentes = afFuenteFinancieraModelo::all();
+        $empleados = EmpleadoModelo::all();
+        $vidas = afDVidaUtilModelo::all();
+        return view('afActivo.afActivoUpdate', compact('activo', 'bienes', 'fuentes', 'empleados', 'vidas'));
     }
 
     // Actualizar un activo

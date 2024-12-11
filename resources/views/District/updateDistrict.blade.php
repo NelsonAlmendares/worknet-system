@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MUNICIPIOS</title>
+    <title>ADMINISTRACION</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
@@ -16,13 +16,15 @@
 <body>
 
 <div class="d-flex">
-   <div class="sidebar">
+    <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -88,7 +90,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#department">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#department">
                 <span class="font_custom-white">
                     <i class='bx bx-map-alt' ></i>
                     Departamentos
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -216,9 +218,78 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Mantenrme informado de las nuevas actualizaciones
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Administre las notificaciones segun el orden de llegada
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>
@@ -228,168 +299,7 @@
             <h2 class="greet">Manejo de Distritos</h2>
 
             <div class="mt-5">
-                <div class="">
-                    <h3 class="text-center mb-3">Listado de Distritos registrados</h3>
-                    @if($districts->isEmpty())
-                        <p>No hay distritos registrados.</p>
-                    @else
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr class="text-center">
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>IDMH</th>
-                            <th>Municipio (Nuevo)</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($districts as $district)
-                            <tr class="text-center">
-                                <td>{{ $district->iddistrict }}</td>
-                                <td>{{ $district->distname }}</td>
-                                <td>{{ $district->dist_idmh }}</td>
-                                <td>{{ $district->municipNew->munipnewname }}</td>
-                                <td>{{ $district->estado_descripcion }}</td>
-                                <td>
-
-                                    <a href="{{ route('District.edit', $district->iddistrict) }}" class="btn btn-warning btn-sm">
-                                        Editar <i class='bx bxs-edit-alt' ></i>
-                                    </a>
-
-                                    <form id="deleteForm-{{ $district->iddistrict }}" action="{{ route('District.destroy', $district->iddistrict) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger btn-sm fw-bold" onclick="confirmDelete({{ $district->iddistrict }})">
-                                            Eliminar <i class='bx bxs-trash custom-icon-size'></i>
-                                        </button>
-                                    </form>
-
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-
-                @endif
-
-                </div>
-            </div>
-
-            <div class="add-center">
-                <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Agregar distrito <i class='bx bx-user-pin custom-icon-size' ></i>
-                </button>
-
-                <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
-                    Reportes <i class='bx bxs-report custom-icon-size' ></i>
-                </button>
-            </div>
-
-            <!-- Modal para agregar datos -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Distrito</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="card-body">
-
-                                <form action="{{ route('District.store') }}" method="POST">
-                                    @csrf
-                                    <!-- Nombre y Apellido -->
-                                    <div class="mb-3">
-                                        <label for="distname" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" name="distname" id="distname" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="dist_idmh" class="form-label">IDMH</label>
-                                        <input type="text" class="form-control" name="dist_idmh" id="dist_idmh" required>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="dist_idmunicipnew" class="form-label">Municipio (nuevo)</label>
-                                        <select class="form-select" id="dist_idmunicipnew" name="dist_idmunicipnew" required>
-                                            <option value="">Seleccione un municipio</option>
-                                            @foreach ($municipsnew as $municipnew)
-                                                <option value="{{ $municipnew->idmunicipnew }}" {{ old('dist_idmunicipnew') == $municipnew->idmunicipnew ? 'selected' : '' }}>
-                                                    {{ $municipnew->municipnewname }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                        @php
-                                            $estados = [
-                                                    'A' => 'Activo',
-                                                    'S' => 'Suspendido',
-                                                    'I' => 'Inactivo',
-                                                    'R' => 'Retirado',
-                                                    'E' => 'Eliminado',
-                                                    'C' => 'Contingente',
-                                                ];
-                                        @endphp
-                                    <div class="mb-3">
-                                        <label for="dist_e" class="form-label">Status</label>
-                                        <select class="form-select" id="dist_e" name="dist_e" required>
-                                            <option value="">Elija el Status</option>
-                                            @foreach ($estados as $key => $label)
-                                                <option value="{{ $key }}" {{ old('dist_e') == $key ? 'selected' : '' }}>
-                                                    {{ $label }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-success fw-bold">
-                                        Enviar distrito <i class='bx bx-user-plus custom-icon-size' ></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger fw-bold" data-bs-dismiss="modal">
-                                Cerrar <i class='bx bxs-x-circle custom-icon-size' ></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Main Content Area -->
-
-    <div class="main">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item d-flex">
-                    <i class='bx bx-search search-icon'></i>
-                    <input type="text" class="form-control search-input" id="" aria-describedby="">
-                  </li>
-                </ul>
-                <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
-                </span>
-              </div>
-            </div>
-          </nav>
-
-          <div class="p-4">
-            <h2>Manejo de Distritos</h2>
-
-            <div class="mt-5">
-                <div class="card container p-3">
+                <div class="container">
                     <h3 class="text-center mb-3">Actualizar Distrito</h3>
 
                     <form action="{{ route('District.update', $district->iddistrict) }}" method="POST">
@@ -437,8 +347,12 @@
                             </select>
                         </div>
                         <div class="update-option">
-                            <button type="submit" class="btn btn-primary espaciado">Actualizar Distrito</button>
-                            <a href="{{ route('District.index') }}" class="btn btn-secondary espaciado">Cancelar</a>
+                            <button type="submit" class="btn btn-success espaciado">
+                                Actualizar Distrito <i class='bx bxs-save'></i>
+                            </button>
+                            <a href="{{ route('District.index') }}" class="btn btn-secondary espaciado">
+                                Cancelar <i class='bx bxs-message-alt-x' ></i>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -446,6 +360,16 @@
           </div>
     </div>
 </div>
+<!-- Footer -->
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -509,6 +433,33 @@
         item.addEventListener('click', function() {
             const chevron = this.querySelector('.fa-chevron-down');
             chevron.classList.toggle('rotate-icon');
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const logoutButton = document.getElementById('logout-button');
+        const logoutForm = document.getElementById('logout-form');
+
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault();  // Prevenir que el formulario se envíe inmediatamente
+
+            // Mostrar el Toast con la notificación
+            Swal.fire({
+                icon: 'success',
+                title: 'Cerrando sesion',
+                text: 'Espere mientras se limpian datos.',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1700,  // Esperar 3 segundos
+                timerProgressBar: true,
+            });
+
+            // Retrasar el envío del formulario
+            setTimeout(() => {
+                logoutForm.submit();  // Enviar el formulario después de 3 segundos
+            }, 2000);  // Retraso de 3 segundos
         });
     });
 </script>

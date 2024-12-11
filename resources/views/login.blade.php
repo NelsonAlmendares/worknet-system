@@ -16,20 +16,20 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Login</h4>
+                            <h4 class="card-title text-center">Login</h4>
                             <form id="login-form" action="{{ route('Usuario.LoginPost') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="user_name" class="form-label">Usuario</label>
-                                    <input id="user_name" type="text" class="form-control" name="user_name" required autofocus>
+                                    <input id="user_name" type="text" placeholder="Ingrese su usuario" class="form-control" name="user_name" required autofocus>
                                     <div class="invalid-feedback">
                                         Usuario requerido.
                                     </div>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="user_password" class="form-label">Password</label>
-                                    <input id="user_password" type="password" class="form-control" name="user_password" required>
+                                    <label for="user_password" class="form-label">Contraseña</label>
+                                    <input id="user_password" type="password" placeholder="Ingrese su contraseña" class="form-control" name="user_password" required>
                                     <div class="invalid-feedback">
                                         Contraseña es requerida.
                                     </div>
@@ -41,12 +41,13 @@
                                     </div>        
                                 --}}
 
-                                <button type="submit" class="btn btn-primary w-100">Login</button>
+                                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
                             </form>
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        Copyright &copy; 2024 &mdash; NelsonAlmendares.dev
+                        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador</span><br>
+                        <br><span class="text-muted"> Consejo Nacional de Ciencia y Tecnologia</span>
                     </div>
                 </div>
             </div>

@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -216,9 +218,78 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Mantenrme informado de las nuevas actualizaciones
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Administre las notificaciones segun el orden de llegada
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>

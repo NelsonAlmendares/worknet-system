@@ -18,10 +18,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -134,7 +136,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -145,7 +147,7 @@
 
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -391,7 +393,7 @@
                                     <!-- ID de la Compañía -->
                                     <div class="mb-3">
                                         <label for="brn_compid" class="form-label">Compañía</label>
-                                        <select name="brn_compid" id="brn_compid" class="form-control" required>
+                                        <select name="brn_compid" id="brn_compid" class="form-select" required>
                                             <option value="">Elija la compañia</option>
                                             @foreach ($companies as $comp)
                                                 <option value="{{ $comp->idcompany }}" {{ old('brn_compid') == $comp->idcompany ? 'selected' : '' }}>
@@ -414,7 +416,7 @@
                                     <!-- Estado -->
                                     <div class="mb-3">
                                         <label for="brn_e" class="form-label">Estado</label>
-                                        <select name="brn_e" id="brn_e" class="form-control" required>
+                                        <select name="brn_e" id="brn_e" class="form-select" required>
                                             <option value="">Elija el Status</option>
                                             @foreach ($estados as $key => $label)
                                                 <option value="{{ $key }}" {{ old('brn_e') == $key ? 'selected' : '' }}>
@@ -446,7 +448,7 @@
 <!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
         <span>
             <a href="#" class="text-muted me-3">Términos</a>
             <a href="#" class="text-muted">Privacidad</a>

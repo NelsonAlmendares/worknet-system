@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\afTipoBienContableController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,28 +24,26 @@ class afActivoModelo extends Model
         'a_estado', 'a_e', 'a_vidautil'
     ];
 
-    /*
-        Relaciones con otras tablas
+    
+    //    Relaciones con otras tablas
 
         public function tipoBienContable()
         {
-            return $this->belongsTo(TipoBienContable::class, 'a_id_tb_contable');
+            return $this->belongsTo(af_tipo_bien_contable::class, 'a_id_tb_contable', 'id_tb_contable');
         }
 
         public function fuenteFinanciera()
         {
-            return $this->belongsTo(FuenteFinanciera::class, 'a_id_f_financiera');
+            return $this->belongsTo(afFuenteFinancieraModelo::class, 'a_id_f_financiera', 'id_f_financiera');
         }
-
-        public function empleadoResponsable()
+    
+        public function empleado()
         {
-            return $this->belongsTo(Employee::class, 'a_responsable_id_emp');
+            return $this->belongsTo(EmpleadoModelo::class, 'a_responsable_id_emp', 'idemployee');
         }
 
         public function vidaUtil()
         {
-            return $this->belongsTo(VidaUtil::class, 'a_vidautil');
+            return $this->belongsTo(afDVidaUtilModelo::class, 'a_vidautil', 'id_vida_util_afd');
         }
-
-    */
 }

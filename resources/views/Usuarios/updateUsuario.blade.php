@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -249,16 +251,34 @@
 
                         <!-- ID del Empleado -->
                         <div class="mb-3">
-                            <label for="user_idemp" class="form-label">ID del Empleado</label>
-                            <input type="number" class="form-control" value="{{ $user->user_idemp }}" name="user_idemp" id="user_idemp" required>
+                            <label for="user_idemp" class="form-label">Empleado</label>
+                            <select class="form-select" id="user_idemp" name="user_idemp" required>
+                                @foreach ($empleados as $emp)
+                                    <option value="{{ $emp->idemployee }}" {{ old('user_idemp', $user->user_idemp) == $emp->idemployee ? 'selected' : '' }}>
+                                        {{ $emp->empfname . " " . $emp->empfsurname}}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-
+                        @php
+                            $estados = [
+                                    'A' => 'Activo',
+                                    'S' => 'Suspendido',
+                                    'I' => 'Inactivo',
+                                    'R' => 'Retirado',
+                                    'E' => 'Eliminado',
+                                    'C' => 'Contingente',
+                                ];
+                        @endphp
                         <!-- Estado del Usuario -->
                         <div class="mb-3">
                             <label for="user_e" class="form-label">Estado del Usuario</label>
-                            <select class="form-control" name="user_e" id="user_e" required>
-                                <option value="A" {{ $user->user_e == 'activo' ? 'selected' : '' }}>Activo</option>
-                                <option value="I" {{ $user->user_e == 'inactivo' ? 'selected' : '' }}>Inactivo</option>
+                            <select class="form-select" name="user_e" id="user_e" required>
+                                @foreach ($estados as $key => $label)
+                                    <option value="{{ $key }}" {{ old('user_e', $user->user_e ?? '') == $key ? 'selected' : '' }}>
+                                        {{ $label }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -280,7 +300,7 @@
 <!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
         <span>
             <a href="#" class="text-muted me-3">Términos</a>
             <a href="#" class="text-muted">Privacidad</a>

@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -309,7 +311,7 @@
                             <th>Codigo de activo</th>
                             <th>Tipo de bien</th>
                             <th>Fuente Financiera</th>
-                            <th>Perteneciente</th>
+                            <th>Perteneciente/Responsable</th>
                             <th>Nombre del bien</th>
                             {{-- <th>Fecha de Nacimiento</th> --}}
                             <th>Modelo</th>
@@ -323,12 +325,12 @@
                                 <td>{{ $activo->a_cod_activo_interno_ant }}</td>
                                 {{-- <td>{{ \Carbon\Carbon::parse($empleado->empborndate)->format('d-m-Y') }}</td> --}}
                                 <td>{{ $activo->a_codigo_activo ?? 'No disponible' }}</td>
-                                <td>{{ $activo->a_id_tb_contable }}</td>
-                                <td>{{ $activo->a_id_f_financiera }}</td>
-                                <td>{{ $activo->a_responsable_id_emp }}</td>
+                                <td>{{ $activo->tipoBienContable->tbc_desc }}</td>
+                                <td>{{ $activo->fuenteFinanciera->ff_nombre }}</td>
+                                <td>{{ $activo->empleado->empfname . " " . $activo->empleado->empfsurname }}</td>
                                 <td>{{ $activo->a_nombre }}</td>
                                 <td>{{ $activo->a_modelo }}</td>
-                                <td>{{ $activo->a_vidautil }}</td>
+                                <td>{{ $activo->vidaUtil->tipo_vida_util_afd }}</td>
                                 <td>
 
                                     <a href="{{ route('activos.edit', $activo->id_activo) }}" class="btn btn-warning btn-sm">Editar</a>
@@ -388,15 +390,36 @@
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_id_tb_contable">Tipo Bien Contable</label>
-                                            <input type="number" name="a_id_tb_contable" class="form-control" value="{{ old('a_id_tb_contable') }}" required>
+                                            <select class="form-select" id="a_id_tb_contable" name="a_id_tb_contable" required>
+                                                <option value="">Seleccione un tipo de bien contable</option>
+                                                @foreach ($bienes as $bien)
+                                                    <option value="{{ $bien->id_tb_contable }}" {{ old('a_id_tb_contable') == $bien->id_tb_contable ? 'selected' : '' }}>
+                                                        {{ $bien->tbc_desc }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_id_f_financiera">Fuente Financiera</label>
-                                            <input type="number" name="a_id_f_financiera" class="form-control" value="{{ old('a_id_f_financiera') }}" required>
+                                            <select class="form-select" id="a_id_f_financiera" name="a_id_f_financiera" required>
+                                                <option value="">Seleccione una Fuente Financiera</option>
+                                                @foreach ($fuentes as $ff)
+                                                    <option value="{{ $ff->id_f_financiera }}" {{ old('a_id_f_financiera') == $ff->id_f_financiera ? 'selected' : '' }}>
+                                                        {{ $ff->ff_nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="a_responsable_id_emp">Responsable</label>
-                                            <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ old('a_responsable_id_emp') }}" required>
+                                            <label for="a_responsable_id_emp">Empleado Responsable</label>
+                                            <select class="form-select" id="a_responsable_id_emp" name="a_responsable_id_emp" required>
+                                                <option value="">Seleccione un Empleado Responsable</option>
+                                                @foreach ($empleados as $emp)
+                                                    <option value="{{ $emp->idemployee }}" {{ old('a_responsable_id_emp') == $emp->idemployee ? 'selected' : '' }}>
+                                                        {{ $emp->empfname . " " . $emp->empfsurname }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_nombre">Nombre</label>
@@ -465,18 +488,46 @@
                                             <label for="a_uso_estado">Estado de Uso</label>
                                             <input type="text" name="a_uso_estado" class="form-control" value="{{ old('a_uso_estado') }}">
                                         </div>
+                                        @php
+                                            $estados = [
+                                                    'A' => 'Activo',
+                                                    'S' => 'Suspendido',
+                                                    'I' => 'Inactivo',
+                                                    'R' => 'Retirado',
+                                                    'E' => 'Eliminado',
+                                                    'C' => 'Contingente',
+                                                ];
+                                        @endphp
                                         <div class="form-group mb-2">
-                                            <label for="a_estado">Estado</label>
+                                            <label for="a_estado">Estado del Activo</label>
                                             <input type="text" name="a_estado" class="form-control" value="{{ old('a_estado') }}">
                                         </div>
                                         <div class="form-group mb-2">
+                                            <label for="a_e">Status</label>
+                                            <select class="form-select" id="a_e" name="a_e" required>
+                                                <option value="">Elija el Status</option>
+                                                @foreach ($estados as $key => $label)
+                                                    <option value="{{ $key }}" {{ old('a_e') == $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-2">
                                             <label for="a_vidautil">Vida Útil</label>
-                                            <input type="number" name="a_vidautil" class="form-control" value="{{ old('a_vidautil') }}" required>
+                                            <select class="form-select" id="a_vidautil" name="a_vidautil" required>
+                                                <option value="">Seleccione un tipo de Vida útil</option>
+                                                @foreach ($vidas as $vida)
+                                                    <option value="{{ $vida->id_vida_util_afd }}" {{ old('a_vidautil') == $vida->id_vida_util_afd ? 'selected' : '' }}>
+                                                        {{ $vida->tipo_vida_util_afd }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary">Guardar Activo</button>
+                                <button type="submit" class="btn btn-primary">Crear Activo</button>
                             </form>
 
                             </div>
@@ -496,7 +547,7 @@
 <!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
         <span>
             <a href="#" class="text-muted me-3">Términos</a>
             <a href="#" class="text-muted">Privacidad</a>

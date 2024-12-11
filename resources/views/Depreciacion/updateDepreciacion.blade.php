@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -315,7 +317,7 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="afd_valor_depreciacion" class="form-label">Valor de depreciación</label>
+                            <label for="afd_valor_depreciacion" class="form-label">Valor del Bien ($)</label>
                             <input type="number" class="form-control" name="afd_valor_depreciacion" id="afd_valor_depreciacion" step="0.01" 
                             min="0" value="{{ number_format($depreciacion->afd_valor_depreciacion, 2) }}" required>
                         </div>
@@ -373,7 +375,15 @@
           </div>
     </div>
 </div>
-
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>

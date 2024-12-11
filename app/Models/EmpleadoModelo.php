@@ -22,4 +22,18 @@ class EmpleadoModelo extends Model
         'empecontactname', 'empecontactcel', 'empcontactkin', 'empbgender', 'empfullname',
         'empfullnameb', 'emp_idposition', 'emp_e'
     ];
+
+    public function getEstadoDescripcionAttribute()
+    {
+        $estados = [
+            'A' => 'Activo',
+            'S' => 'Suspendido',
+            'I' => 'Inactivo',
+            'R' => 'Retirado',
+            'E' => 'Eliminado',
+            'C' => 'Contingente',
+        ];
+
+        return $estados[$this->emp_e] ?? 'Desconocido';
+    }
 }

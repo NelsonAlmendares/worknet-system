@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -135,7 +137,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -146,7 +148,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -312,6 +314,7 @@
                             {{-- <th>Fecha de Nacimiento</th> --}}
                             <th>Email</th>
                             <th>Nombre Completo</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -326,6 +329,7 @@
                                 {{-- <td>{{ \Carbon\Carbon::parse($empleado->empborndate)->format('d-m-Y') }}</td> --}}
                                 <td>{{ $empleado->empemail ?? 'No disponible' }}</td>
                                 <td>{{ $empleado->empfullname }}</td>
+                                <td>{{ $empleado->estado_descripcion }}</td>
                                 <td>
 
                                     <a href="{{ route('Empleados.edit', $empleado->idemployee) }}" class="btn btn-warning btn-sm">
@@ -432,11 +436,24 @@
                                                     <label for="empfullnameb" class="form-label">Nombre Completo Alternativo</label>
                                                     <input type="text" class="form-control" name="empfullnameb" id="empfullnameb" required>
                                                 </div>
+                                                @php
+                                                    $estados = [
+                                                            'A' => 'Activo',
+                                                            'S' => 'Suspendido',
+                                                            'I' => 'Inactivo',
+                                                            'R' => 'Retirado',
+                                                            'E' => 'Eliminado',
+                                                            'C' => 'Contingente',
+                                                        ];
+                                                @endphp
                                                 <div class="mb-3">
                                                     <label for="emp_e" class="form-label">Estado del Empleado</label>
-                                                    <select class="form-control" name="emp_e" id="emp_e" required>
-                                                        <option value="A">Activo</option>
-                                                        <option value="I">Inactivo</option>
+                                                    <select class="form-select" name="emp_e" id="emp_e" required>
+                                                        @foreach ($estados as $key => $label)
+                                                            <option value="{{ $key }}" {{ old('emp_e') == $key ? 'selected' : '' }}>
+                                                                {{ $label }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -450,7 +467,7 @@
                                     </div>
 
                                     <button type="submit" class="btn btn-success fw-bold">
-                                        Agregar Empleado <i class='bx bx-user-plus custom-icon-size' ></i>
+                                        Crear Empleado <i class='bx bx-user-plus custom-icon-size' ></i>
                                     </button>
                                 </form>
                             </div>
@@ -470,7 +487,7 @@
 <!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
         <span>
             <a href="#" class="text-muted me-3">Términos</a>
             <a href="#" class="text-muted">Privacidad</a>

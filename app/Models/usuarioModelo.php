@@ -40,4 +40,22 @@ class UsuarioModelo extends Authenticatable
     {
         return $this->user_password;
     }
+
+    public function getEstadoDescripcionAttribute()
+    {
+        $estados = [
+            'A' => 'Activo',
+            'S' => 'Suspendido',
+            'I' => 'Inactivo',
+            'R' => 'Retirado',
+            'E' => 'Eliminado',
+            'C' => 'Contingente',
+        ];
+
+        return $estados[$this->user_e] ?? 'Desconocido';
+    }
+    public function empleado()
+    {
+        return $this->belongsTo(EmpleadoModelo::class, 'user_idemp', 'idemployee');
+    }
 }

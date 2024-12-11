@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\EmpleadoModelo;
 use App\Models\usuarioModelo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -14,14 +15,19 @@ class usuarioController extends Controller
     {
         // Obtener todos los usuarios
         $usuarios = usuarioModelo::all();
+        $empleados = EmpleadoModelo::all();
         // dd($usuarios); // Ver los datos
-        return view('Usuarios.createUsuario', compact('usuarios'));
+        return view('Usuarios.createUsuario', compact('usuarios', 'empleados'));
     }
 
     // Funcion para llamar la vista en la carpeta (views->Usuarios 'createUsuario')
     public function create()
     {
-        return view('Usuarios.createUsuario');
+        // Obtener todos los usuarios
+        $usuarios = usuarioModelo::all();
+        $empleados = EmpleadoModelo::all();
+        // dd($usuarios); // Ver los datos
+        return view('Usuarios.createUsuario', compact('usuarios', 'empleados'));
     }
 
     // Método para registrar un nuevo usuario
@@ -60,8 +66,9 @@ class usuarioController extends Controller
     {
         // Buscar el usuario por ID
         $user = usuarioModelo::findOrFail($id);
+        $empleados = EmpleadoModelo::all();
         // Retornar la vista de actualización con el usuario específico
-        return view('Usuarios.updateUsuario', compact('user'));
+        return view('Usuarios.updateUsuario', compact('user', 'empleados'));
     }
 
     public function update(Request $request, $id)

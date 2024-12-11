@@ -18,10 +18,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -134,7 +136,7 @@
         <!-- Menus simples -->
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Branches.index') }}">
+                <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
                             Compañía
@@ -145,7 +147,7 @@
 
         <div>
             <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
-                <a href="{{ route('Sucursal.index') }}">
+                <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
                         Sucursal
@@ -296,7 +298,7 @@
 
               <div class="mt-5">
                 <div class="">
-                    <h3 class="text-center mb-3">Listado de Puestos registrados</h3>
+                    <h3 class="text-center mb-3">Listado de Cargos</h3>
                     @if($positions->isEmpty())
                         <p>No hay puestos registrados.</p>
                     @else
@@ -393,7 +395,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="posit_idunit">Unidad A</label>
-                                        <select name="posit_idunit" id="posit_idunit" class="form-control">
+                                        <select name="posit_idunit" id="posit_idunit" class="form-select">
                                             @foreach ($units as $unit)
                                                 <option value="{{ $unit->idunit }}">
                                                     {{ $unit->unitname }}
@@ -404,7 +406,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="posit_idunitb">Unidad B</label>
-                                        <select name="posit_idunitb" id="posit_idunitb" class="form-control">
+                                        <select name="posit_idunitb" id="posit_idunitb" class="form-select">
                                             @foreach ($units as $unit)
                                                 <option value="{{ $unit->idunit }}">
                                                     {{ $unit->unitname }}
@@ -414,7 +416,7 @@
 
                                     <div class="form-group mb-3">
                                         <label for="posit_idtypeposit">Tipo de Posición</label>
-                                        <select name="posit_idtypeposit" id="posit_idtypeposit" class="form-control">
+                                        <select name="posit_idtypeposit" id="posit_idtypeposit" class="form-select">
                                         
                                             @foreach ($typePositions as $typePosition)
                                                 <option value="{{ $typePosition->idtypeposit }}">{{ $typePosition->typepositname }}</option>
@@ -443,7 +445,7 @@
                                         </select>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary mt-3">Registrar Posición</button>
+                                    <button type="submit" class="btn btn-primary mt-3">Crear Cargo</button>
                                 </form>
                             </div>
                         </div>
@@ -461,7 +463,7 @@
 <!-- Footer -->
 <footer class="footer bg-body-tertiary">
     <div class="container-fluid d-flex justify-content-between align-items-center">
-        <span class="text-muted">&copy; 2024 Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
         <span>
             <a href="#" class="text-muted me-3">Términos</a>
             <a href="#" class="text-muted">Privacidad</a>

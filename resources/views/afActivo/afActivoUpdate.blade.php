@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -31,7 +33,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
                 <a href="{{ route('welcome') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-dashboard' ></i>
@@ -42,7 +44,7 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
                 <a href="{{ route('Empleados.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-user' ></i>
@@ -53,7 +55,7 @@
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
@@ -79,12 +81,12 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar rol</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
@@ -97,7 +99,6 @@
             </div>
             <div class="collapse submenu" id="department">
                 <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
-                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -111,7 +112,6 @@
             </div>
             <div class="collapse submenu" id="district">
                 <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
-                <a href="#" class="submenu-item">Reportes</a>
             </div>
         </div>
 
@@ -126,16 +126,17 @@
             <div class="collapse submenu" id="municip">
                 <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
                 <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
                 <a href="{{ route('Sucursal.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bxs-food-menu' ></i>
@@ -146,7 +147,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
                 <a href="{{ route('Branches.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-clipboard' ></i>
@@ -157,7 +158,7 @@
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
                 <a href="{{ route('Cargos.index') }}">
                     <span class="font_custom-white">
                         <i class='bx bx-list-check' ></i>
@@ -166,9 +167,11 @@
                 </a>
             </div>
         </div>
+
         <div class="list-menu-small">
-            <p class="text-small">Activos</p>
+            <p class="text-small">ACTIVOS</p>
         </div>
+
         <div>
             <div class="menu-item" id="active" data-bs-toggle="collapse">
                 <a href="{{ route('activos.index') }}">
@@ -177,6 +180,23 @@
                         Activo Fijo
                     </span>
                 </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
+                <span class="font_custom-white">
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
+                </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
 
@@ -299,15 +319,33 @@
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_id_tb_contable">Tipo Bien Contable</label>
-                                            <input type="number" name="a_id_tb_contable" class="form-control" value="{{ $activo->a_id_tb_contable }}" required>
+                                            <select name="a_id_tb_contable" id="a_id_tb_contable" class="form-select" required>
+                                                @foreach ($bienes as $bien)
+                                                    <option value="{{ $bien->id_tb_contable }}" {{ old('a_id_tb_contable', $activo->a_id_tb_contable ?? '') == $bien->id_tb_contable ? 'selected' : '' }}>
+                                                        {{ $bien->tbc_desc }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_id_f_financiera">Fuente Financiera</label>
-                                            <input type="number" name="a_id_f_financiera" class="form-control" value="{{ $activo->a_id_f_financiera }}" required>
+                                            <select name="a_id_f_financiera" id="a_id_f_financiera" class="form-select" required>
+                                                @foreach ($fuentes as $ff)
+                                                    <option value="{{ $ff->id_f_financiera }}" {{ old('a_id_f_financiera', $activo->a_id_f_financiera ?? '') == $ff->id_f_financiera ? 'selected' : '' }}>
+                                                        {{ $ff->ff_nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_responsable_id_emp">Responsable</label>
-                                            <input type="number" name="a_responsable_id_emp" class="form-control" value="{{ $activo->a_responsable_id_emp }}" required>
+                                            <select name="a_responsable_id_emp" id="a_responsable_id_emp" class="form-select" required>
+                                                @foreach ($empleados as $emp)
+                                                    <option value="{{ $emp->idemployee }}" {{ old('a_responsable_id_emp', $activo->a_responsable_id_emp ?? '') == $emp->idemployee ? 'selected' : '' }}>
+                                                        {{ $emp->empfname . " " . $emp->empfsurname }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_nombre">Nombre</label>
@@ -378,12 +416,38 @@
                                             <input type="text" name="a_uso_estado" class="form-control" value="{{ $activo->a_uso_estado }}">
                                         </div>
                                         <div class="form-group mb-2">
-                                            <label for="a_estado">Estado</label>
+                                            <label for="a_estado">Estado del Activo</label>
                                             <input type="text" name="a_estado" class="form-control" value="{{ $activo->a_estado }}">
+                                        </div>
+                                        @php
+                                            $estados = [
+                                                    'A' => 'Activo',
+                                                    'S' => 'Suspendido',
+                                                    'I' => 'Inactivo',
+                                                    'R' => 'Retirado',
+                                                    'E' => 'Eliminado',
+                                                    'C' => 'Contingente',
+                                                ];
+                                        @endphp
+                                        <div class="form-group mb-2">
+                                            <label for="a_e">Status</label>
+                                            <select name="a_e" id="a_e" class="form-select" required>
+                                                @foreach ($estados as $key => $label)
+                                                    <option value="{{ $key }}" {{ old('a_e', $activo->a_e ?? '') == $key ? 'selected' : '' }}>
+                                                        {{ $label }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <div class="form-group mb-2">
                                             <label for="a_vidautil">Vida Útil</label>
-                                            <input type="number" name="a_vidautil" class="form-control" value="{{ $activo->a_vidautil }}" required>
+                                            <select name="a_vidautil" id="a_vidautil" class="form-select" required>
+                                                @foreach ($vidas as $vida)
+                                                    <option value="{{ $vida->id_vida_util_afd }}" {{ old('a_vidautil', $activo->a_vidautil ?? '') == $vida->id_vida_util_afd ? 'selected' : '' }}>
+                                                        {{ $vida->tipo_vida_util_afd }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -401,7 +465,15 @@
         </div>
     </div>
 </div>
-
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 

@@ -47,7 +47,7 @@ class districtController extends Controller
     public function edit($id)
     {
         $municipsnew = municipNewModel::all();
-        $distric = districtModelo::findOrFail($id);
+        $district = districtModelo::findOrFail($id);
         return view('District.updateDistrict', compact('municipsnew', 'district'));
     }
 

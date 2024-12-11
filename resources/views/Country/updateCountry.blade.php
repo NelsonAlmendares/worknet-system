@@ -19,10 +19,12 @@
     <div class="sidebar">
         <div>
             <div class="menu-item logo_banner" data-bs-toggle="collapse" data-bs-target="">
-                <span class="">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
-                    class="img-fluid logo-img" alt="">
-                </span>
+                <a href="{{ route('welcome') }}">
+                    <span class="">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Logo_del_Gobierno_de_El_Salvador_%282019%29.svg/996px-Logo_del_Gobierno_de_El_Salvador_%282019%29.svg.png"
+                            class="img-fluid logo-img" alt="">
+                    </span>
+                </a>
             </div>
         </div>
 
@@ -31,41 +33,41 @@
         </div>
 
         <div>
-            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <a href="{{ route('welcome') }}" class="text-decoration-none font_custom-white">
-                        <i class='bx bxs-dashboard'></i>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#dashboard">
+                <a href="{{ route('welcome') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-dashboard' ></i>
                         Dashboard
-                    </a>
-                </span>
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
-                <span class="font_custom-white">
-                    <i class='bx bx-bar-chart-alt-2' ></i>
-                    Administración
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Empleados.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-user' ></i>
+                        Empleados
+                    </span>
+                </a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Gestión</p>
+            <p class="text-small">GESTION</p>
         </div>
         <!-- Menus deplegables -->
         <div>
             <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#users">
                 <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
+                    <i class='bx bxs-user-rectangle margin-top-icon'></i>
                     Usuarios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="users">
-                <a href="#" class="submenu-item">User List</a>
-                <a href="#" class="submenu-item">Add User</a>
-                <a href="#" class="submenu-item">User Groups</a>
+                <a href="{{ route('Usuarios.index') }}" class="submenu-item">Agregar Usuario</a>
             </div>
         </div>
 
@@ -79,144 +81,122 @@
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
             <div class="collapse submenu" id="settings">
-                <a href="#" class="submenu-item">General</a>
-                <a href="#" class="submenu-item">Security</a>
-                <a href="#" class="submenu-item">Preferences</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-folder' ></i>
-                    Modulos
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-file' ></i>
-                    Reportes
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+                <a href="{{ route('Rol.index') }}" class="submenu-item">Agregar Roles</a>
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Funciones</p>
+            <p class="text-small">FUNCIONES</p>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-map' ></i>
-                    Países
-                </span>
-                <i class="fas fa-chevron-down font_custom-white"></i>
-            </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
-            </div>
-        </div>
-
-        <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse" data-bs-target="#department">
                 <span class="font_custom-white">
                     <i class='bx bx-map-alt' ></i>
                     Departamentos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="department">
+                <a href="{{ route('Department.index') }}" class="submenu-item">Agregar departamento</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#district">
                 <span class="font_custom-white">
                     <i class='bx bxs-institution' ></i>
                     Distritos
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="district">
+                <a href="{{ route('District.index') }}" class="submenu-item">Agregar distritos</a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#municip">
                 <span class="font_custom-white">
                     <i class='bx bxs-school' ></i>
                     Municipios
                 </span>
                 <i class="fas fa-chevron-down font_custom-white"></i>
             </div>
-            <div class="collapse submenu" id="">
-                <a href="#" class="submenu-item ">Analytics</a>
-                <a href="#" class="submenu-item">Reports</a>
-                <a href="#" class="submenu-item">Statistics</a>
+            <div class="collapse submenu" id="municip">
+                <a href="{{ route('Municip.index') }}" class="submenu-item">Agregar municipios</a>
+                <a href="{{ route('MunicipNew.index') }}" class="submenu-item">Agregar municipios (nuevos)</a>
+
             </div>
         </div>
 
         <div class="list-menu-small">
-            <p class="text-small">Operaciones</p>
+            <p class="text-small">OPERACIONES</p>
         </div>
 
         <!-- Menus simples -->
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-food-menu' ></i>
-                    Compañía
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Sucursal.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxs-food-menu' ></i>
+                            Compañía
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bx-clipboard' ></i>
-                    Sucursal
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Branches.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-clipboard' ></i>
+                        Sucursal
+                    </span>
+                </a>
             </div>
         </div>
 
         <div>
-            <div class="menu-item" id="active" data-bs-toggle="collapse" data-bs-target="#">
-                <span class="font_custom-white">
-                    <i class='bx bxs-user' ></i>
-                    Empleado
-                </span>
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('Cargos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bx-list-check' ></i>
+                        Cargo
+                    </span>
+                </a>
             </div>
         </div>
 
+        <div class="list-menu-small">
+            <p class="text-small">ACTIVOS</p>
+        </div>
+
         <div>
-            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#dashboard">
+            <div class="menu-item" id="no-hover" data-bs-toggle="collapse">
+                <a href="{{ route('activos.index') }}">
+                    <span class="font_custom-white">
+                        <i class='bx bxl-react'></i>
+                        Activo Fijo
+                    </span>
+                </a>
+            </div>
+        </div>
+
+
+        <div>
+            <div class="menu-item" data-bs-toggle="collapse" data-bs-target="#activo">
                 <span class="font_custom-white">
-                    <i class='bx bx-list-check' ></i>
-                    Cargo
+                    <i class='bx bxs-briefcase-alt-2'></i>
+                    Manejo de activos
                 </span>
+                <i class="fas fa-chevron-down font_custom-white"></i>
+            </div>
+            <div class="collapse submenu" id="activo">
+                <a href="{{ route('Depreciacion.index') }}" class="submenu-item">Deprecacion</a>
+                <a href="{{ route('FuenteFinanciera.index') }}" class="submenu-item">Fuente Financiera</a>
+                <a href="{{ route('VidaUtil.index') }}" class="submenu-item">Vida Util</a>
+                <a href="{{ route('BienContable.index') }}" class="submenu-item">Tipo de bien contable</a>
             </div>
         </div>
     </div>
@@ -238,9 +218,78 @@
                   </li>
                 </ul>
                 <span class="navbar-text">
-                    <i class='bx bx-bell session-icon' ></i>
-                    <i class='bx bx-moon session-icon' ></i>
-                    <i class='bx bx-user session-icon' ></i>
+                    <!-- Notificaciones -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-bell session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+
+                        <ul class="dropdown-menu notifications">
+                            <ol class="list-group list-group-flush list-group-numbered">
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Actualizaciones</div>
+                                    Contacte con soporte tecnico
+                                  </div>
+                                  <span class="badge bg-success rounded-pill">0</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Nuevos grupos</div>
+                                    Mantenrme informado de las nuevas actualizaciones
+                                  </div>
+                                  <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-start">
+                                  <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Alertas</div>
+                                    Administre las notificaciones segun el orden de llegada
+                                  </div>
+                                  <span class="badge bg-danger rounded-pill">4</span>
+                                </li>
+                              </ol>
+                        </ul>
+                    </div>
+
+                    <!-- Modo oscuro -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-moon session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item text-secondary" href="#">En mantenimiento</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Usuario -->
+                    <div class="btn-group dropstart">
+                        <i class="bx bx-user session-icon" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu">
+                            <!-- Botón de Cerrar Sesión -->
+                            <li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                    @csrf
+                                    <button id="logout-button" type="submit" class="dropdown-item text-danger">
+                                        Cerrar Sesión 
+                                        <i class="bx bx-log-in topbar-icon text-danger"></i>
+                                    </button>
+                                </form>
+                            </li>
+                            
+                            <!-- Configuración -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Configuración 
+                                    <i class="bx bxs-face topbar-icon text-secondary"></i>
+                                </a>
+                            </li>
+
+                            <!-- Soporte -->
+                            <li>
+                                <a class="dropdown-item text-secondary" href="#">
+                                    Soporte 
+                                    <i class="bx bx-support topbar-icon text-info"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </span>
               </div>
             </div>
@@ -296,7 +345,15 @@
           </div>
     </div>
 </div>
-
+<footer class="footer bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <span class="text-muted">&copy; {{ date('Y') }} Gobierno de El Salvador || Consejo Nacional de Ciencia y Tecnologia</span>
+        <span>
+            <a href="#" class="text-muted me-3">Términos</a>
+            <a href="#" class="text-muted">Privacidad</a>
+        </span>
+    </div>
+</footer>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
