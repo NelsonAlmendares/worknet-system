@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\municipController;
 use App\Http\Controllers\municipNewController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\positionController;
 use App\Http\Controllers\rolController;
 use App\Http\Controllers\solicitudController;
@@ -196,4 +197,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/rol/{id}', [rolController::class, 'update'])->name('Rol.update');
     // Ruta para eliminar datos
     Route::delete('/rol/{id}', [rolController::class, 'destroy'])->name('Rol.destroy');
+
+    //Generación de reportes en PDFs 
+    Route::get('/generate-pdf', [PdfController::class, 'generatePdf']);
 });

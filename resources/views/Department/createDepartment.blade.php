@@ -350,10 +350,6 @@
                 <button type="button" class="btn btn-secondary btn-custom-size fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Agregar departamento <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
-
-                <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
-                    Reportes <i class='bx bxs-report custom-icon-size' ></i>
-                </button>
             </div>
 
             <!-- Modal para agregar datos -->

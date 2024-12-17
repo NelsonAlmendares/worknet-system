@@ -359,9 +359,9 @@
                     Agregar Activo <i class='bx bx-user-pin custom-icon-size' ></i>
                 </button>
 
-                <button type="button" onclick="showCommingSoon()" class="btn btn-dark btn-custom-size fw-bold">
-                    Repores <i class='bx bxs-report custom-icon-size' ></i>
-                </button>
+                <a class="btn btn-dark btn-custom-size fw-bold" href="/generate-pdf?table=activos" target="_blank" rel="noopener noreferrer">
+                    Reportes <i class='bx bxs-report custom-icon-size' ></i>
+                </a>
             </div>
 
             <!-- Modal para agregar datos -->
